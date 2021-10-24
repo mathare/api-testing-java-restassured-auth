@@ -61,8 +61,12 @@ public class CommonSteps {
         assertThat(JsonPath.from(response.asString()).get(), equalTo(expectedResponse));
     }
 
+    private String formatEndpoint(String endpoint) {
+        return endpoint.replaceAll(" ", "").toLowerCase();
+    }
+
     private String buildRequestURI(String word, String endpoint) {
-        return (word + "/" + endpoint.replace(" ", "")).toLowerCase();
+        return (word + "/" + formatEndpoint(endpoint)).toLowerCase();
     }
 
     private File getJsonSchema(String schemaName) {
@@ -70,9 +74,8 @@ public class CommonSteps {
     }
 
     private Object getExpectedResponse(String endpoint, String word) {
-        endpoint = endpoint.replaceAll(" ", "").toLowerCase();
         word = word.substring(0, 1).toUpperCase() + word.substring(1);
-        String filename = EXPECTED_RESPONSES_DIR + endpoint + "/" + word + "Response.json";
+        String filename = EXPECTED_RESPONSES_DIR + formatEndpoint(endpoint) + "/" + word + "Response.json";
         return JsonPath.from(new File(filename)).get();
     }
 }
