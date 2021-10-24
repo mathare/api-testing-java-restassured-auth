@@ -32,3 +32,29 @@ Feature: "Type Of" Endpoint
     Then the response has a status code of 404
     And the response body follows the error JSON schema
     And the response body contains an error message of "word not found"
+
+  Scenario: Valid single letter word
+    When I make a GET request to the "Type Of" endpoint for the word "a"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word is an example of the following types
+      | nucleotide             |
+      | base                   |
+      | blood group            |
+      | blood type             |
+      | fat-soluble vitamin    |
+      | current unit           |
+      | metric linear unit     |
+      | purine                 |
+      | letter                 |
+      | alphabetic character   |
+      | letter of the alphabet |
+
+  Scenario: Invalid single letter word
+    When I make a GET request to the "Type Of" endpoint for the word "q"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word is an example of the following types
+      | alphabetic character   |
+      | letter                 |
+      | letter of the alphabet |
