@@ -1,3 +1,4 @@
+#noinspection CucumberTableInspection
 Feature: "Type Of" Endpoint
 
   Scenario: Verify response schema and body
@@ -58,3 +59,29 @@ Feature: "Type Of" Endpoint
       | alphabetic character   |
       | letter                 |
       | letter of the alphabet |
+
+  Scenario: Get type of number instead of word
+    When I make a GET request to the "Type Of" endpoint for the word "1"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word is an example of the following types
+      | digit  |
+      | figure |
+
+  Scenario: Get type of multi-digit number
+    When I make a GET request to the "Type Of" endpoint for the word "10"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word is an example of the following types
+      | large integer |
+
+  Scenario Outline: Get type of <description> number
+    When I make a GET request to the "Type Of" endpoint for the word "<number>"
+    Then the response has a status code of 404
+    And the response body follows the error JSON schema
+    And the response body contains an error message of "word not found"
+    Examples:
+      | description | number |
+      | non-integer | 1.0    |
+      | negative    | -1     |
+
