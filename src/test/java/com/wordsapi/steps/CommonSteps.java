@@ -1,4 +1,4 @@
-package com.typicode.jsonplaceholder.steps;
+package com.wordsapi.steps;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
@@ -18,14 +18,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class CommonSteps {
 
-    private final String BASE_RESOURCES_DIR = "src/test/resources/";
-    private final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
-    private final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
+    private static final String BASE_RESOURCES_DIR = "src/test/resources/";
+    private static final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
+    private static final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
 
-    private RequestSpecification request;
-    private Response response;
-    private List<Response> responses;
-    private String endpoint, word;
+    private static RequestSpecification request;
+    public static Response response;
+    private static List<Response> responses;
+    private static String endpoint, word;
 
     @Before
     public void setup() {
@@ -39,8 +39,8 @@ public class CommonSteps {
 
     @When("^I make a GET request to the \"(.+)\" endpoint for the word \"(.+)\"$")
     public void makeRequest(String endpoint, String word) {
-        this.endpoint = endpoint;
-        this.word = word;
+        CommonSteps.endpoint = endpoint;
+        CommonSteps.word = word;
         response = request.get(buildRequestURI(word, endpoint));
         responses.add(response);
     }
