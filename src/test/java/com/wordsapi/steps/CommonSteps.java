@@ -52,15 +52,11 @@ public class CommonSteps {
 
     @Then("the response body follows the {string} JSON schema")
     public void verifyResponseBodyAgainstJsonSchema(String schemaName) {
-//        String filename = SCHEMAS_DIR + schema.replaceAll(" ", "") + "Schema.json";
-//        assertThat(response.asString(), matchesJsonSchema(new File(filename)));
         assertThat(response.asString(), matchesJsonSchema(getJsonSchema(schemaName)));
     }
 
     @Then("the response body matches the expected response")
     public void verifyResponseBodyAgainstExpectedResponse() {
-//        String filename = EXPECTED_RESPONSES_DIR + expectedResponse.replaceAll(" ", "") + "Response.json";
-//        Object expected = JsonPath.from(new File(filename)).get();
         Object expectedResponse = getExpectedResponse(endpoint, word);
         assertThat(JsonPath.from(response.asString()).get(), equalTo(expectedResponse));
     }
