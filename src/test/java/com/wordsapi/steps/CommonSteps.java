@@ -21,9 +21,8 @@ public class CommonSteps {
     private static final String BASE_RESOURCES_DIR = "src/test/resources/";
     private static final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
     private static final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
-
-    private static RequestSpecification request;
     public static Response response;
+    private static RequestSpecification request;
     private static List<Response> responses;
     private static String endpoint, word;
 
