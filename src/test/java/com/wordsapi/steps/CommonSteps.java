@@ -37,7 +37,7 @@ public class CommonSteps {
     }
 
 
-    @When("^I make a GET request to the \"(.+)\" endpoint for the word \"(.+)\"$")
+    @When("I make a GET request to the {string} endpoint for the word {string}")
     public void makeRequest(String endpoint, String word) {
         CommonSteps.endpoint = endpoint;
         CommonSteps.word = word;
