@@ -1,0 +1,118 @@
+{
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "results": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "definition": {
+              "type": "string"
+            },
+            "partOfSpeech": {
+              "type": "string"
+            },
+            "synonyms": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "typeOf": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "hasTypes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "derivation": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "examples": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "definition",
+            "partOfSpeech",
+            "synonyms",
+            "typeOf",
+            "hasTypes",
+            "derivation",
+            "examples"
+          ]
+        }
+      ]
+    },
+    "syllables": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "list": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "list"
+      ]
+    },
+    "pronunciation": {
+      "type": "object",
+      "properties": {
+        "all": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "all"
+      ]
+    },
+    "frequency": {
+      "type": "number"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "word",
+    "results",
+    "syllables",
+    "pronunciation",
+    "frequency"
+  ]
+}
