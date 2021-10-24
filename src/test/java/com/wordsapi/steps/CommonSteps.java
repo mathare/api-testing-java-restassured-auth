@@ -50,9 +50,9 @@ public class CommonSteps {
         assertThat(response.getStatusCode(), equalTo(code));
     }
 
-    @Then("the response body follows the {string} JSON schema")
-    public void verifyResponseBodyAgainstJsonSchema(String schemaName) {
-        assertThat(response.asString(), matchesJsonSchema(getJsonSchema(schemaName)));
+    @Then("the response body follows the expected JSON schema")
+    public void verifyResponseBodyAgainstJsonSchema() {
+        assertThat(response.asString(), matchesJsonSchema(getJsonSchema(endpoint)));
     }
 
     @Then("the response body matches the expected response")
