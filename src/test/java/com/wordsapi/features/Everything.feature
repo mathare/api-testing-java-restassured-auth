@@ -96,3 +96,11 @@ Feature: "Everything" Endpoint
       | lose       |
     And there is no "antonyms" field in the other results
 
+  Scenario: Verify "attribute" field in results
+    When I make a GET request to the "Everything" endpoint for the word "time"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "attribute" field in the 1st result has the following values
+      | antemeridian |
+      | postmeridian |
+    And there is no "attribute" field in the other results
