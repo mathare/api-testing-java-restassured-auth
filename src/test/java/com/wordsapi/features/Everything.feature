@@ -86,3 +86,11 @@ Feature: "Everything" Endpoint
       | aware     |
       | cognizant |
 
+  Scenario: Verify "antonyms" field in results
+    When I make a GET request to the "Everything" endpoint for the word "profit"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "antonyms" field in the 2nd result has the following values
+      | break even |
+      | lose       |
+
