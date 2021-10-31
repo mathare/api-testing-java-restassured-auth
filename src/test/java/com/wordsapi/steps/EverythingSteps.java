@@ -16,6 +16,7 @@ public class EverythingSteps {
 
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     private final JsonPath json = JsonPath.from(CommonSteps.response.asString());
+    private final List<Map<String, String>> results = json.get("results");
 
     @Then("the word field in the response body is {string}")
     public void verifyWord(String word) {
@@ -25,9 +26,9 @@ public class EverythingSteps {
     @Then("the response body contains {int} definition(s)")
     public void verifyNumDefinitions(int numDefinitions) {
         if (numDefinitions == 0) {
-            assertThat(json.get("results"), equalTo(null));
+            assertThat(results, equalTo(null));
         } else {
-            assertThat(json.get("results"), hasSize(numDefinitions));
+            assertThat(results, hasSize(numDefinitions));
         }
     }
 
@@ -35,7 +36,6 @@ public class EverythingSteps {
     public void verifyPartsOfSpeech(int occurrences, String partOfSpeech) {
         if (partOfSpeech.endsWith("s")) partOfSpeech = partOfSpeech.substring(0, partOfSpeech.length() - 1);
         if (PARTS_OF_SPEECH.contains(partOfSpeech)) {
-            List<Map<String, String>> results = json.get("results");
             int count = 0;
             for (Map<String, String> result : results) {
                 if (result.get("partOfSpeech") != null && result.get("partOfSpeech").equals(partOfSpeech)) count++;
@@ -48,7 +48,6 @@ public class EverythingSteps {
 
     @Then("^all the definitions are (\\w+)$")
     public void verifyPartsOfSpeech(String partOfSpeech) {
-        List<Map<String, String>> results = json.get("results");
         verifyPartsOfSpeech(results.size(), partOfSpeech);
     }
 }
