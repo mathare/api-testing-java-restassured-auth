@@ -38,6 +38,14 @@ Feature: "Everything" Endpoint
     Arctic deer with large antlers in both sexes; called `reindeer' in Eurasia and `caribou' in North America
     """
 
+  Scenario: Verify definitions for word with multiple results
+    When I make a GET request to the "Everything" endpoint for the word "shelf"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the definitions are
+      | a projecting ridge on a mountain or submerged under water           |
+      | a support that consists of a horizontal surface for holding objects |
+
   Scenario Outline: All definitions are same part of speech - <part of speech>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200

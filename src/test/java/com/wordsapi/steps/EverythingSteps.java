@@ -1,5 +1,6 @@
 package com.wordsapi.steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import org.apache.commons.lang3.NotImplementedException;
@@ -35,6 +36,15 @@ public class EverythingSteps {
     @Then("the definition is")
     public void verifyDefinition(String definition) {
         assertThat(results.get(0).get("definition"), equalTo(definition));
+    }
+
+    @Then("the definitions are")
+    public void verifyDefinition(DataTable dataTable) {
+        List<String> definitions = dataTable.asList();
+        assertThat(results.size(), equalTo(definitions.size()));
+        for (int i = 0; i < definitions.size(); i++) {
+            assertThat(results.get(i).get("definition"), equalTo(definitions.get(i)));
+        }
     }
 
     @Then("^(\\d+) of the definitions (?:are|is (?:a|an)) (\\w+)$")
