@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 public class EverythingSteps {
 
-    private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "definite article", "noun", "obj", "pl", "preposition", "pronoun", "verb");
+    private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
 
     @Then("the response body contains {int} definition(s)")
     public void verifyNumDefinitions(int numDefinitions) {
@@ -33,7 +33,7 @@ public class EverythingSteps {
             List<Map<String, String>> results = JsonPath.from(response.asString()).get("results");
             int count = 0;
             for (Map<String, String> result : results) {
-                if (result.get("partOfSpeech").equals(partOfSpeech)) count++;
+                if (result.get("partOfSpeech") != null && result.get("partOfSpeech").equals(partOfSpeech)) count++;
             }
             assertThat(count, equalTo(occurrences));
         } else {

@@ -80,6 +80,14 @@
                 }
               ]
             },
+            "inCategory": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "memberOf": {
               "type": "array",
               "items": [
@@ -177,6 +185,12 @@
       ],
       "properties": {
         "all": {
+          "type": "string"
+        },
+        "noun": {
+          "type": "string"
+        },
+        "verb": {
           "type": "string"
         }
       },
