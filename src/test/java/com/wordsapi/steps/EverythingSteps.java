@@ -32,6 +32,11 @@ public class EverythingSteps {
         }
     }
 
+    @Then("the definition is")
+    public void verifyDefinition(String definition) {
+        assertThat(results.get(0).get("definition"), equalTo(definition));
+    }
+
     @Then("^(\\d+) of the definitions (?:are|is (?:a|an)) (\\w+)$")
     public void verifyPartsOfSpeech(int occurrences, String partOfSpeech) {
         if (partOfSpeech.endsWith("s")) partOfSpeech = partOfSpeech.substring(0, partOfSpeech.length() - 1);

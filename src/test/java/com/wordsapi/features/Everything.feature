@@ -28,6 +28,15 @@ Feature: "Everything" Endpoint
       | peptide | 1           |
       | dog     | 8           |
       | set     | 45          |
+    
+  Scenario: Verify definition for word with single result
+    When I make a GET request to the "Everything" endpoint for the word "caribou"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the definition is
+    """
+    Arctic deer with large antlers in both sexes; called `reindeer' in Eurasia and `caribou' in North America
+    """
 
   Scenario Outline: All definitions are same part of speech - <part of speech>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
