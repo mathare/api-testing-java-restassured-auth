@@ -16,7 +16,7 @@
             "partOfSpeech": {
               "type": "string"
             },
-            "synonyms": {
+            "also": {
               "type": "array",
               "items": [
                 {
@@ -24,7 +24,7 @@
                 }
               ]
             },
-            "typeOf": {
+            "antonyms": {
               "type": "array",
               "items": [
                 {
@@ -32,7 +32,7 @@
                 }
               ]
             },
-            "hasTypes": {
+            "attribute": {
               "type": "array",
               "items": [
                 {
@@ -55,19 +55,98 @@
                   "type": "string"
                 }
               ]
+            },
+            "hasMembers": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "hasParts": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "hasTypes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "memberOf": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "partOf": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "pertainsTo": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "similarTo": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "synonyms": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "typeOf": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
             }
           },
           "additionalProperties": false,
           "required": [
             "definition",
-            "partOfSpeech",
-            "synonyms",
-            "typeOf",
-            "hasTypes",
-            "derivation",
-            "examples"
+            "partOfSpeech"
           ]
         }
+      ]
+    },
+    "rhymes": {
+      "type": "object",
+      "properties": {
+        "all": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "all"
       ]
     },
     "syllables": {
@@ -92,7 +171,10 @@
       ]
     },
     "pronunciation": {
-      "type": "object",
+      "type": [
+        "object",
+        "string"
+      ],
       "properties": {
         "all": {
           "type": "string"
@@ -111,7 +193,6 @@
   "required": [
     "word",
     "results",
-    "syllables",
     "pronunciation",
     "frequency"
   ]
