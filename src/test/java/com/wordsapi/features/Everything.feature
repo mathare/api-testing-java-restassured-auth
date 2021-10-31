@@ -85,6 +85,7 @@ Feature: "Everything" Endpoint
       | watchful  |
       | aware     |
       | cognizant |
+    And there is no "also" field in the other results
 
   Scenario: Verify "antonyms" field in results
     When I make a GET request to the "Everything" endpoint for the word "profit"
@@ -93,4 +94,5 @@ Feature: "Everything" Endpoint
     And the "antonyms" field in the 2nd result has the following values
       | break even |
       | lose       |
+    And there is no "antonyms" field in the other results
 
