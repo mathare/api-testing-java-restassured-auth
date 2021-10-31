@@ -6,6 +6,16 @@ Feature: "Everything" Endpoint
     And the response body follows the expected JSON schema
     And the response body matches the expected response
 
+  Scenario Outline: Verify "word" field in response is requested word
+    When I make a GET request to the "Everything" endpoint for the word "<word>"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word field in the response body is "<word>"
+    Examples:
+      | word     |
+      | computer |
+      | mouse    |
+      | test     |
 
   Scenario Outline: Words can have multiple definitions (results) - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"

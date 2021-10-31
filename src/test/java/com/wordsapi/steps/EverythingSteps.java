@@ -17,6 +17,11 @@ public class EverythingSteps {
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     private final JsonPath json = JsonPath.from(CommonSteps.response.asString());
 
+    @Then("the word field in the response body is {string}")
+    public void verifyWord(String word) {
+        assertThat(json.get("word"), equalTo(word));
+    }
+
     @Then("the response body contains {int} definition(s)")
     public void verifyNumDefinitions(int numDefinitions) {
         if (numDefinitions == 0) {
