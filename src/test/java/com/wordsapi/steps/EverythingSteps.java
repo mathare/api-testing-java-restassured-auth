@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import org.apache.commons.lang3.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class EverythingSteps {
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     private final JsonPath json = JsonPath.from(CommonSteps.response.asString());
     private final List<Map<String, String>> results = json.get("results");
-    private int index;
+    private final List<Integer> indices = new ArrayList<>();
 
     @Then("the word field in the response body is {string}")
     public void verifyWord(String word) {
@@ -69,14 +70,14 @@ public class EverythingSteps {
 
     @Then("^the \"(\\w+)\" field in the (\\d+).{2} result has the following values")
     public void verifyFieldInResult(String field, int index, DataTable dataTable) {
-        this.index = index - 1;
-        assertThat(json.get(String.format("results[%d].%s", this.index, field)).toString(), equalTo(dataTable.asList().toString()));
+        indices.add(index - 1);
+        assertThat(json.get(String.format("results[%d].%s", index-1, field)).toString(), equalTo(dataTable.asList().toString()));
     }
 
     @Then("there is no {string} field in the other results")
     public void verifyFieldNotPresentInOtherResults(String field) {
         for (int i = 0; i < results.size(); i++) {
-            if (i != index) {
+            if (!indices.contains(i)) {
                 assertThat(json.get(String.format("results[%d].%s", i, field)), equalTo(null));
             }
         }
