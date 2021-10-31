@@ -40,6 +40,14 @@
                 }
               ]
             },
+            "cause": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "derivation": {
               "type": "array",
               "items": [
@@ -273,6 +281,9 @@
       ],
       "properties": {
         "all": {
+          "type": "string"
+        },
+        "adjective": {
           "type": "string"
         },
         "noun": {
