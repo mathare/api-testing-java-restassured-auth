@@ -22,4 +22,24 @@ public class EverythingSteps {
         assertThat(JsonPath.from(response.asString()).get("results"), hasSize(numDefinitions));
     }
 
+    @Then("^(\\d+) of the definitions (?:are|is (?:a|an)) (\\w+)$")
+    public void verifyPartsOfSpeech(int occurrences, String partOfSpeech) {
+        if (partOfSpeech.endsWith("s")) partOfSpeech = partOfSpeech.substring(0, partOfSpeech.length() - 1);
+        if (PARTS_OF_SPEECH.contains(partOfSpeech)) {
+            List<Map<String, String>> results = JsonPath.from(response.asString()).get("results");
+            int count = 0;
+            for (Map<String, String> result : results) {
+                if (result.get("partOfSpeech").equals(partOfSpeech)) count++;
+            }
+            assertThat(count, equalTo(occurrences));
+        } else {
+            throw new NotImplementedException("Unknown part of speech: " + partOfSpeech);
+        }
+    }
+
+    @Then("^all the definitions are (\\w+)$")
+    public void verifyPartsOfSpeech(String partOfSpeech) {
+        List<Map<String, String>> results = JsonPath.from(response.asString()).get("results");
+        verifyPartsOfSpeech(results.size(), partOfSpeech);
+    }
 }
