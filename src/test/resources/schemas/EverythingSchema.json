@@ -192,7 +192,6 @@
   "additionalProperties": false,
   "required": [
     "word",
-    "results",
     "pronunciation",
     "frequency"
   ]

@@ -19,7 +19,11 @@ public class EverythingSteps {
 
     @Then("the response body contains {int} definition(s)")
     public void verifyNumDefinitions(int numDefinitions) {
-        assertThat(JsonPath.from(response.asString()).get("results"), hasSize(numDefinitions));
+        if (numDefinitions == 0) {
+            assertThat(JsonPath.from(response.asString()).get("results"), equalTo(null));
+        } else {
+            assertThat(JsonPath.from(response.asString()).get("results"), hasSize(numDefinitions));
+        }
     }
 
     @Then("^(\\d+) of the definitions (?:are|is (?:a|an)) (\\w+)$")
