@@ -7,9 +7,11 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
@@ -25,6 +27,7 @@ public class CommonSteps {
     private static RequestSpecification request;
     private static List<Response> responses;
     private static String endpoint, word;
+    private static final List<String> ENDPOINTS = Arrays.asList("Everything", "Type Of");
 
     @Before
     public void setup() {
@@ -38,10 +41,14 @@ public class CommonSteps {
 
     @When("I make a GET request to the {string} endpoint for the word {string}")
     public void makeRequest(String endpoint, String word) {
-        CommonSteps.endpoint = endpoint;
-        CommonSteps.word = word;
-        response = request.get(buildRequestURI(word, endpoint));
-        responses.add(response);
+        if (ENDPOINTS.contains(endpoint)) {
+            CommonSteps.endpoint = endpoint;
+            CommonSteps.word = word;
+            response = request.get(buildRequestURI(word, endpoint));
+            responses.add(response);
+        } else {
+            throw new NotImplementedException("Invalid API endpoint");
+        }
     }
 
     @Then("the response has a status code of {int}")
