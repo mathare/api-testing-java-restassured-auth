@@ -28,7 +28,7 @@ Feature: "Everything" Endpoint
       | peptide | 1           |
       | dog     | 8           |
       | set     | 45          |
-    
+
   Scenario: Verify definition for word with single result
     When I make a GET request to the "Everything" endpoint for the word "caribou"
     Then the response has a status code of 200
@@ -104,3 +104,271 @@ Feature: "Everything" Endpoint
       | antemeridian |
       | postmeridian |
     And there is no "attribute" field in the other results
+
+  Scenario: Verify "cause" field in results
+    When I make a GET request to the "Everything" endpoint for the word "work"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "cause" field in the 9th result has the following values
+      | do work |
+    And the "cause" field in the 18th result has the following values
+      | turn    |
+      | ferment |
+      | sour    |
+    And the "cause" field in the 20th result has the following values
+      | exercise |
+      | work out |
+    And there is no "cause" field in the other results
+
+  Scenario: Verify "derivation" field in results
+    When I make a GET request to the "Everything" endpoint for the word "puzzle"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "derivation" field in the 1st result has the following values
+      | puzzlement |
+      | puzzler    |
+    And the "derivation" field in the 4th result has the following values
+      | puzzlement |
+    And there is no "derivation" field in the other results
+
+  Scenario: Verify "entails" field in results
+    When I make a GET request to the "Everything" endpoint for the word "touch"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "entails" field in the 2nd result has the following values
+      | refer  |
+      | denote |
+    And there is no "entails" field in the other results
+
+  Scenario: Verify "examples" field in results
+    When I make a GET request to the "Everything" endpoint for the word "story"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "examples" field in the 1st result has the following values
+      | a history of France           |
+      | the story of exposure to lead |
+    And the "examples" field in the 3rd result has the following values
+      | the story was on the 11 o'clock news |
+    And there is no "examples" field in the other results
+
+  Scenario: Verify "hasCategories" field in results
+    When I make a GET request to the "Everything" endpoint for the word "science"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "hasCategories" field in the 2nd result has the following values
+      | theorizer    |
+      | verify       |
+      | theorist     |
+      | idealogue    |
+      | theoretician |
+      | control      |
+      | theoriser    |
+      | maths        |
+      | mathematics  |
+      | math         |
+    And there is no "hasCategories" field in the other results
+
+  Scenario: Verify "hasInstances" field in results
+    When I make a GET request to the "Everything" endpoint for the word "ocean"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "hasInstances" field in the 2nd result has the following values
+      | pacific ocean   |
+      | indian ocean    |
+      | arctic ocean    |
+      | atlantic        |
+      | atlantic ocean  |
+      | antarctic ocean |
+      | pacific         |
+    And there is no "hasInstances" field in the other results
+
+  Scenario: Verify "hasMembers" field in results
+    When I make a GET request to the "Everything" endpoint for the word "pantheon"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "hasMembers" field in the 1st result has the following values
+      | god      |
+      | deity    |
+      | divinity |
+      | immortal |
+    And there is no "hasMembers" field in the other results
+
+  Scenario: Verify "hasParts" field in results
+    When I make a GET request to the "Everything" endpoint for the word "dress"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "hasParts" field in the 4th result has the following values
+      | neckline       |
+      | slide fastener |
+      | bodice         |
+      | zip            |
+      | zip fastener   |
+      | zipper         |
+      | hemline        |
+    And there is no "hasParts" field in the other results
+
+  Scenario: Verify "hasSubstances" field in results
+    When I make a GET request to the "Everything" endpoint for the word "meat"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "hasSubstances" field in the 3rd result has the following values
+      | hexadecanoic acid |
+      | palmitic acid     |
+      | protein           |
+    And there is no "hasSubstances" field in the other results
+
+  Scenario: Verify "hasTypes" field in results
+    When I make a GET request to the "Everything" endpoint for the word "blanket"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "hasTypes" field in the 1st result has the following values
+      | afghan           |
+      | electric blanket |
+      | mackinaw         |
+      | mackinaw blanket |
+      | manta            |
+      | security blanket |
+    And there is no "hasTypes" field in the other results
+
+  Scenario: Verify "hasUsages" field in results
+    When I make a GET request to the "Everything" endpoint for the word "superlative"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "hasUsages" field in the 4th result has the following values
+      | nighest |
+      | best    |
+      | fewest  |
+      | least   |
+      | most    |
+      | worst   |
+      | closest |
+      | nearest |
+    And there is no "hasUsages" field in the other results
+
+  Scenario: Verify "inCategory" field in results
+    When I make a GET request to the "Everything" endpoint for the word "assault"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "inCategory" field in the 6th result has the following values
+      | armed services   |
+      | war machine      |
+      | armed forces     |
+      | military machine |
+      | military         |
+    And there is no "inCategory" field in the other results
+
+  Scenario: Verify "inRegion" field in results
+    When I make a GET request to the "Everything" endpoint for the word "gladiator"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "inRegion" field in the 2nd result has the following values
+      | roma             |
+      | italian capital  |
+      | capital of italy |
+      | rome             |
+      | eternal city     |
+    And there is no "inRegion" field in the other results
+
+  Scenario: Verify "instanceOf" field in results
+    When I make a GET request to the "Everything" endpoint for the word "devil"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "instanceOf" field in the 1st result has the following values
+      | spiritual being    |
+      | supernatural being |
+    And there is no "instanceOf" field in the other results
+
+  Scenario: Verify "memberOf" field in results
+    When I make a GET request to the "Everything" endpoint for the word "oyster"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "memberOf" field in the 4th result has the following values
+      | ostreidae        |
+      | family ostreidae |
+    And there is no "memberOf" field in the other results
+
+  Scenario: Verify "partOf" field in results
+    When I make a GET request to the "Everything" endpoint for the word "vessel"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "partOf" field in the 2nd result has the following values
+      | vascular system |
+    And there is no "partOf" field in the other results
+
+  Scenario: Verify "pertainsTo" field in results
+    When I make a GET request to the "Everything" endpoint for the word "choral"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "pertainsTo" field in the 2nd result has the following values
+      | chorus |
+    And there is no "pertainsTo" field in the other results
+
+  Scenario: Verify "regionOf" field in results
+    When I make a GET request to the "Everything" endpoint for the word "atlantic"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "regionOf" field in the 1st result has the following values
+      | battle of trafalgar |
+      | trafalgar           |
+    And there is no "regionOf" field in the other results
+
+  Scenario: Verify "similarTo" field in results
+    When I make a GET request to the "Everything" endpoint for the word "sandy"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "similarTo" field in the 1st result has the following values
+      | blond        |
+      | blonde       |
+      | light-haired |
+    And there is no "similarTo" field in the other results
+
+  Scenario: Verify "substanceOf" field in results
+    When I make a GET request to the "Everything" endpoint for the word "cocoa"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "substanceOf" field in the 2nd result has the following values
+      | hot chocolate      |
+      | drinking chocolate |
+      | chocolate          |
+    And there is no "substanceOf" field in the other results
+
+  Scenario: Verify "synonyms" field in results
+    When I make a GET request to the "Everything" endpoint for the word "cane"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "synonyms" field in the 1st result has the following values
+      | flog     |
+      | lambast  |
+      | lambaste |
+    And there is no "synonyms" field in the other results
+
+  Scenario: Verify "typeOf" field in results
+    When I make a GET request to the "Everything" endpoint for the word "dripping"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "typeOf" field in the 1st result has the following values
+      | sound |
+    And the "typeOf" field in the 3rd result has the following values
+      | flow    |
+      | flowing |
+    And there is no "typeOf" field in the other results
+
+  Scenario: Verify "usageOf" field in results
+    When I make a GET request to the "Everything" endpoint for the word "mighty"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "usageOf" field in the 1st result has the following values
+      | intensifier |
+      | intensive   |
+    And there is no "usageOf" field in the other results
+
+  Scenario: Verify "verbGroup" field in results
+    When I make a GET request to the "Everything" endpoint for the word "shed"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "verbGroup" field in the 3rd result has the following values
+      | slop     |
+      | spill    |
+      | splatter |
+    And there is no "verbGroup" field in the other results
+
