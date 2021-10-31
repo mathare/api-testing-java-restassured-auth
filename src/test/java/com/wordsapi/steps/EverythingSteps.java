@@ -5,9 +5,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import org.apache.commons.lang3.NotImplementedException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -64,5 +62,10 @@ public class EverythingSteps {
     @Then("^all the definitions are (\\w+)$")
     public void verifyPartsOfSpeech(String partOfSpeech) {
         verifyPartsOfSpeech(results.size(), partOfSpeech);
+    }
+
+    @Then("^the \"(\\w+)\" field in the (\\d+).{2} result has the following values")
+    public void verifyFieldInResult(String field, int index, DataTable dataTable) {
+        assertThat(json.get(String.format("results[%d].%s", index-1, field)).toString(), equalTo(dataTable.asList().toString()));
     }
 }

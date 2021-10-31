@@ -74,3 +74,15 @@ Feature: "Everything" Endpoint
       | fast  | 9          | 1       | 1     | 2     |
       | house | 0          | 0       | 12    | 2     |
 
+  Scenario: Verify "also" field in results
+    When I make a GET request to the "Everything" endpoint for the word "awake"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the "also" field in the 3rd result has the following values
+      | cognisant |
+      | alert     |
+      | conscious |
+      | watchful  |
+      | aware     |
+      | cognizant |
+
