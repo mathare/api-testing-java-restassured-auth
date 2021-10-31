@@ -33,3 +33,11 @@ Feature: "Everything" Endpoint
       | this       | pronoun        |
       | occur      | verbs          |
 
+  Scenario: Definitions cover multiple parts of speech
+    When I make a GET request to the "Everything" endpoint for the word "blue"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And 8 of the definitions are adjectives
+    And 7 of the definitions are nouns
+    And 1 of the definitions is a verb
+
