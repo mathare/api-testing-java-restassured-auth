@@ -48,7 +48,31 @@
                 }
               ]
             },
+            "entails": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "examples": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "hasCategories": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "hasInstances": {
               "type": "array",
               "items": [
                 {
@@ -72,6 +96,14 @@
                 }
               ]
             },
+            "hasSubstances": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "hasTypes": {
               "type": "array",
               "items": [
@@ -80,7 +112,31 @@
                 }
               ]
             },
+            "hasUsages": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "inCategory": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "inRegion": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "instanceOf": {
               "type": "array",
               "items": [
                 {
@@ -112,7 +168,23 @@
                 }
               ]
             },
+            "regionOf": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "similarTo": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "substanceOf": {
               "type": "array",
               "items": [
                 {
@@ -129,6 +201,22 @@
               ]
             },
             "typeOf": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "usageOf": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "verbGroup": {
               "type": "array",
               "items": [
                 {
