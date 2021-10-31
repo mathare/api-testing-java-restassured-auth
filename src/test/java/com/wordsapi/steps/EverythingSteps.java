@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static com.wordsapi.steps.CommonSteps.response;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -16,13 +15,14 @@ import static org.hamcrest.Matchers.hasSize;
 public class EverythingSteps {
 
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
+    private final JsonPath json = JsonPath.from(CommonSteps.response.asString());
 
     @Then("the response body contains {int} definition(s)")
     public void verifyNumDefinitions(int numDefinitions) {
         if (numDefinitions == 0) {
-            assertThat(JsonPath.from(response.asString()).get("results"), equalTo(null));
+            assertThat(json.get("results"), equalTo(null));
         } else {
-            assertThat(JsonPath.from(response.asString()).get("results"), hasSize(numDefinitions));
+            assertThat(json.get("results"), hasSize(numDefinitions));
         }
     }
 
@@ -30,7 +30,7 @@ public class EverythingSteps {
     public void verifyPartsOfSpeech(int occurrences, String partOfSpeech) {
         if (partOfSpeech.endsWith("s")) partOfSpeech = partOfSpeech.substring(0, partOfSpeech.length() - 1);
         if (PARTS_OF_SPEECH.contains(partOfSpeech)) {
-            List<Map<String, String>> results = JsonPath.from(response.asString()).get("results");
+            List<Map<String, String>> results = json.get("results");
             int count = 0;
             for (Map<String, String> result : results) {
                 if (result.get("partOfSpeech") != null && result.get("partOfSpeech").equals(partOfSpeech)) count++;
@@ -43,7 +43,7 @@ public class EverythingSteps {
 
     @Then("^all the definitions are (\\w+)$")
     public void verifyPartsOfSpeech(String partOfSpeech) {
-        List<Map<String, String>> results = JsonPath.from(response.asString()).get("results");
+        List<Map<String, String>> results = json.get("results");
         verifyPartsOfSpeech(results.size(), partOfSpeech);
     }
 }
