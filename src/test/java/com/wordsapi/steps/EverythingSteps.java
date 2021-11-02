@@ -71,7 +71,7 @@ public class EverythingSteps {
     @Then("^the \"(\\w+)\" field in the (\\d+).{2} result has the following values")
     public void verifyFieldInResult(String field, int index, DataTable dataTable) {
         indices.add(index - 1);
-        assertThat(json.get(String.format("results[%d].%s", index-1, field)).toString(), equalTo(dataTable.asList().toString()));
+        assertThat(json.get(String.format("results[%d].%s", index - 1, field)).toString(), equalTo(dataTable.asList().toString()));
     }
 
     @Then("there is no {string} field in the other results")
@@ -88,4 +88,13 @@ public class EverythingSteps {
         assertThat(json.get("rhymes.all"), equalTo(rhyme));
     }
 
+    @Then("the word has {int} syllables")
+    public void verifyNumSyllables(int numSyllables) {
+        assertThat(json.get("syllables.count"), equalTo(numSyllables));
+    }
+
+    @Then("the word has the following syllables")
+    public void verifySyllables(DataTable dataTable) {
+        assertThat(json.get("syllables.list"), equalTo(dataTable.asList()));
+    }
 }

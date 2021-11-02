@@ -384,3 +384,28 @@ Feature: "Everything" Endpoint
       | our   | -aʊr  |
       | their | -r    |
 
+  Scenario Outline: Verify number of syllables - <word>
+    When I make a GET request to the "Everything" endpoint for the word "<word>"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word has <syllables> syllables
+    Examples:
+      | word                    | syllables |
+      | scourge                 | 1         |
+      | keyboard                | 2         |
+      | area                    | 3         |
+      | triangular              | 4         |
+      | vermiculated            | 5         |
+      | gubernatorial           | 6         |
+      | overindividualistically | 11        |
+
+  Scenario: Verify breakdown of syllables
+    When I make a GET request to the "Everything" endpoint for the word "automation"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word has the following syllables
+      | au   |
+      | to   |
+      | ma   |
+      | tion |
+
