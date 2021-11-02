@@ -82,4 +82,10 @@ public class EverythingSteps {
             }
         }
     }
+
+    @Then("the word rhymes with {string}")
+    public void verifyRhyme(String rhyme) {
+        assertThat(json.get("rhymes.all"), equalTo(rhyme));
+    }
+
 }

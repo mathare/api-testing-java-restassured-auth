@@ -14,7 +14,10 @@
               "type": "string"
             },
             "partOfSpeech": {
-              "type": "string"
+              "type": [
+                "string",
+                "null"
+              ]
             },
             "also": {
               "type": "array",
@@ -304,8 +307,6 @@
   },
   "additionalProperties": false,
   "required": [
-    "word",
-    "pronunciation",
-    "frequency"
+    "word"
   ]
 }

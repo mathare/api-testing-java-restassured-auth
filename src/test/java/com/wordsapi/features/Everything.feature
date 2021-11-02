@@ -372,3 +372,15 @@ Feature: "Everything" Endpoint
       | splatter |
     And there is no "verbGroup" field in the other results
 
+  # For some reason it only seems to be pronouns that have a rhyme defined
+  Scenario Outline: Verify rhyme for word with single rhyme - <word>
+    When I make a GET request to the "Everything" endpoint for the word "<word>"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word rhymes with "<rhyme>"
+    Examples:
+      | word  | rhyme |
+      | his   | -ɪz   |
+      | our   | -aʊr  |
+      | their | -r    |
+
