@@ -296,10 +296,7 @@
           "type": "string"
         }
       },
-      "additionalProperties": false,
-      "required": [
-        "all"
-      ]
+      "additionalProperties": false
     },
     "frequency": {
       "type": "number"

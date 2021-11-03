@@ -409,3 +409,17 @@ Feature: "Everything" Endpoint
       | ma   |
       | tion |
 
+  Scenario: Word with single pronunciation
+    When I make a GET request to the "Everything" endpoint for the word "duplicate"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word is pronounced "'du,pləkeɪt"
+
+  Scenario: Word with multiple pronunciations
+    When I make a GET request to the "Everything" endpoint for the word "effect"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word has the following pronunciations
+      | noun | 'ɪ,fɛkt |
+      | verb | ,ɪ'fɛkt |
+
