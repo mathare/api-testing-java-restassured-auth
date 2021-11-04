@@ -110,4 +110,9 @@ public class EverythingSteps {
             assertThat(json.get("pronunciation." + key), equalTo(pronunciations.get(key)));
         }
     }
+
+    @Then("the word has a frequency of {float}")
+    public void verifyFrequency(float frequency) {
+        assertThat(json.get("frequency"), equalTo(frequency));
+    }
 }

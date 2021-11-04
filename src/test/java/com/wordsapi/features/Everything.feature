@@ -423,3 +423,14 @@ Feature: "Everything" Endpoint
       | noun | 'ɪ,fɛkt |
       | verb | ,ɪ'fɛkt |
 
+  Scenario Outline: Verify frequency - <word>
+    When I make a GET request to the "Everything" endpoint for the word "<word>"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word has a frequency of <frequency>
+    Examples:
+      | word        | frequency |
+      | machination | 1.97      |
+      | wardrobe    | 3.71      |
+      | I           | 7.56      |
+
