@@ -518,3 +518,13 @@ Feature: "Everything" Endpoint
     And the response body follows the error JSON schema
     And the response body contains an error message of "word not found"
 
+  Scenario Outline: Popular brand names - <word>
+    When I make a GET request to the "Everything" endpoint for the word "<word>"
+    Then the response has a status code of <status code>
+    And the response body follows the <schema> JSON schema
+    Examples:
+      | word      | status code | schema   |
+      | Google    | 200         | expected |
+      | Microsoft | 200         | expected |
+      | Facebook  | 404         | error    |
+
