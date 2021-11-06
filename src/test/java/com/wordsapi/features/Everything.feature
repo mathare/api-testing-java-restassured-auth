@@ -434,3 +434,34 @@ Feature: "Everything" Endpoint
       | wardrobe    | 3.71      |
       | I           | 7.56      |
 
+  Scenario: Word not in dictionary returns error
+    When I make a GET request to the "Everything" endpoint for the word "api"
+    Then the response has a status code of 404
+    And the response body follows the error JSON schema
+    And the response body contains an error message of "word not found"
+
+  Scenario: Valid single letter word
+    When I make a GET request to the "Everything" endpoint for the word "a"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Invalid single letter word
+    When I make a GET request to the "Everything" endpoint for the word "q"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Number instead of word
+    When I make a GET request to the "Everything" endpoint for the word "1"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario Outline: Invalid number - <description>
+    When I make a GET request to the "Everything" endpoint for the word "<number>"
+    Then the response has a status code of 404
+    And the response body follows the error JSON schema
+    And the response body contains an error message of "word not found"
+    Examples:
+      | description | number |
+      | non-integer | 1.0    |
+      | negative    | -1     |
+
