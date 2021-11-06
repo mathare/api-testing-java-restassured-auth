@@ -475,3 +475,14 @@ Feature: "Everything" Endpoint
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
 
+  Scenario: Valid multi-word phrase
+    When I make a GET request to the "Everything" endpoint for the phrase "vitamin C"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Invalid multi-word phrase
+    When I make a GET request to the "Everything" endpoint for the phrase "computer desk"
+    Then the response has a status code of 404
+    And the response body follows the error JSON schema
+    And the response body contains an error message of "word not found"
+
