@@ -502,3 +502,19 @@ Feature: "Everything" Endpoint
     And I make a GET request to the "Everything" endpoint for the word "CANOE"
     Then all response bodies are identical
 
+  Scenario: Commonly abbreviated word
+    When I make a GET request to the "Everything" endpoint for the word "flu"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Valid initialism
+    When I make a GET request to the "Everything" endpoint for the word "AA"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Invalid initialism
+    When I make a GET request to the "Everything" endpoint for the word "MSN"
+    Then the response has a status code of 404
+    And the response body follows the error JSON schema
+    And the response body contains an error message of "word not found"
+
