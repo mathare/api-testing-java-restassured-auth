@@ -465,3 +465,13 @@ Feature: "Everything" Endpoint
       | non-integer | 1.0    |
       | negative    | -1     |
 
+  Scenario: Words containing numbers
+    When I make a GET request to the "Everything" endpoint for the word "1st"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Numbers as words
+    When I make a GET request to the "Everything" endpoint for the word "one"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
