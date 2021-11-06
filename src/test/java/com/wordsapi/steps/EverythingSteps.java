@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static com.wordsapi.steps.CommonSteps.responses;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -114,5 +115,12 @@ public class EverythingSteps {
     @Then("the word has a frequency of {float}")
     public void verifyFrequency(float frequency) {
         assertThat(json.get("frequency"), equalTo(frequency));
+    }
+
+    @Then("all response bodies are identical")
+    public void verifyAllResponsesIdentical() {
+        for (int i = 1; i < responses.size(); i++) {
+            assertThat(responses.get(i).asString(), equalTo(responses.get(0).asString()));
+        }
     }
 }
