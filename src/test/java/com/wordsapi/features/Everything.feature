@@ -538,3 +538,12 @@ Feature: "Everything" Endpoint
       | R&D   |
       | R & D |
 
+  Scenario Outline: Valid foreign phrases used in English - <phrase>
+    When I make a GET request to the "Everything" endpoint for the phrase "<phrase>"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    Examples:
+      | phrase        |
+      | caveat emptor |
+      | fait accompli |
+
