@@ -1,3 +1,4 @@
+#noinspection NonAsciiCharacters, CucumberTableInspection, SpellCheckingInspection
 Feature: "Everything" Endpoint
 
   Scenario: Verify response schema and body
