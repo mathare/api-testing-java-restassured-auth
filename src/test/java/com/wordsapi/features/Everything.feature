@@ -547,3 +547,19 @@ Feature: "Everything" Endpoint
       | caveat emptor |
       | fait accompli |
 
+  Scenario: Abbreviated phrase without punctuation raises error
+    When I make a GET request to the "Everything" endpoint for the phrase "eg"
+    Then the response has a status code of 404
+    And the response body follows the error JSON schema
+    And the response body contains an error message of "word not found"
+
+  Scenario: Abbreviated phrase with punctuation is valid
+    When I make a GET request to the "Everything" endpoint for the phrase "e.g."
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Responses for puncuatated and non-punctuated abbreviated phrase differ
+    When I make a GET request to the "Everything" endpoint for the word "etc"
+    And I make a GET request to the "Everything" endpoint for the word "etc."
+    Then the response bodies differ
+

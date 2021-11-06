@@ -12,8 +12,7 @@ import java.util.Map;
 
 import static com.wordsapi.steps.CommonSteps.responses;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 
 public class EverythingSteps {
 
@@ -122,5 +121,17 @@ public class EverythingSteps {
         for (int i = 1; i < responses.size(); i++) {
             assertThat(responses.get(i).asString(), equalTo(responses.get(0).asString()));
         }
+    }
+
+    @Then("the response bodies differ")
+    public void verifyResponseBodiesDiffer() {
+        // As simple comparison of responses will differ on the "word" field since each request is for a different word
+        // so set that field equal in both responses before comparing them
+        String firstResponse = responses.get(0).asString();
+        String secondResponse = responses.get(1).asString();
+        String firstWord = JsonPath.from(firstResponse).get("word");
+        String secondWord = JsonPath.from(secondResponse).get("word");
+        secondResponse = secondResponse.replace(String.format("\"word\":\"%s\"", secondWord), String.format("\"word\":\"%s\"", firstWord));
+        assertThat(firstResponse, not(secondResponse));
     }
 }
