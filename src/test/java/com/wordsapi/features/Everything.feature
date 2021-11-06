@@ -558,7 +558,7 @@ Feature: "Everything" Endpoint
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
 
-  Scenario: Responses for puncuatated and non-punctuated abbreviated phrase differ
+  Scenario: Responses for punctuated and non-punctuated abbreviated phrase differ
     When I make a GET request to the "Everything" endpoint for the word "etc"
     And I make a GET request to the "Everything" endpoint for the word "etc."
     Then the response bodies differ
