@@ -528,3 +528,13 @@ Feature: "Everything" Endpoint
       | Microsoft | 200         | expected |
       | Facebook  | 404         | error    |
 
+  Scenario Outline: Word containing invalid special character - <word>
+    When I make a GET request to the "Everything" endpoint for the word "<word>"
+    Then the response has a status code of 404
+    And the response body follows the error JSON schema
+    And the response body contains an error message of "word not found"
+    Examples:
+      | word  |
+      | R&D   |
+      | R & D |
+
