@@ -486,3 +486,13 @@ Feature: "Everything" Endpoint
     And the response body follows the error JSON schema
     And the response body contains an error message of "word not found"
 
+  Scenario: Hyphenated words
+    When I make a GET request to the "Everything" endpoint for the word "mother-in-law"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
+  Scenario: Words containing apostrophes
+    When I make a GET request to the "Everything" endpoint for the word "shouldn't"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+
