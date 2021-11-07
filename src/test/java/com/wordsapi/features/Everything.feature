@@ -1,5 +1,15 @@
 #noinspection NonAsciiCharacters, CucumberTableInspection, SpellCheckingInspection
 Feature: "Everything" Endpoint
+While the API docs (https://rapidapi.com/dpventures/api/wordsapi/) do provide a schema for this endpoint response it
+appears not to be a definitive schema as I encountered a number of responses that deviated from the documented schema.
+This is unusual given this is the main endpoint for this API but may be because it (sort of) combines the other endpoints
+into a single response. As a result of the lack of a definitive schema I have conducted a number of exploratory tests to
+derive a complete schema (or as complete as I can identify at this stage). I wouldn't normally test the schema is correct
+for every response but I have done here to make sure my derived schema is correct. I have also written more test scenarios
+to illustrate certain features of the schema in more detail than I would normally go into as I am using a derived schema.
+
+Also, as there are no documented requirements for this API (which is normal for 3rd party APIs) the aforementioned
+exploratory tests help to reveal and document the system behaviour under various conditions
 
   Scenario: Verify response schema and body
     When I make a GET request to the "Everything" endpoint for the word "example"
