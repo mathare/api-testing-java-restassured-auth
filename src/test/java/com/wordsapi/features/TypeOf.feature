@@ -64,7 +64,7 @@ I am using is as expected
       | letter of the alphabet |
 
   Scenario: Get type of number instead of word
-    When I make a GET request to the "Type Of" endpoint for the word "1"
+    When I make a GET request to the "Type Of" endpoint for the word "2"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
     And the word is an example of the following types
@@ -72,7 +72,7 @@ I am using is as expected
       | figure |
 
   Scenario: Get type of multi-digit number
-    When I make a GET request to the "Type Of" endpoint for the word "10"
+    When I make a GET request to the "Type Of" endpoint for the word "12"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
     And the word is an example of the following types
