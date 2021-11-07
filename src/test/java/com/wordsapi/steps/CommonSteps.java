@@ -25,7 +25,7 @@ public class CommonSteps {
     private static final String BASE_RESOURCES_DIR = "src/test/resources/";
     private static final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
     private static final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
-    private static final List<String> ENDPOINTS = Arrays.asList("Everything", "Type Of");
+    private static final List<String> ENDPOINTS = Arrays.asList("Everything", "Has Types", "Type Of");
     static Response response;
     static List<Response> responses;
     private static RequestSpecification request;
