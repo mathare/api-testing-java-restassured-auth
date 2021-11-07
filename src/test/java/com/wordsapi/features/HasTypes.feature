@@ -1,8 +1,8 @@
 #noinspection SpellCheckingInspection
 Feature: "Has Types" Endpoint
-  I wouldn't generally validate the schema for every response but having identified issues with the documented schema for
-  the "Everything" endpoint I have chosen to add the schema validation step to all tests so that I can be sure the schema
-  I am using is as expected
+I wouldn't generally validate the schema for every response but having identified issues with the documented schema for
+the "Everything" endpoint I have chosen to add the schema validation step to all tests so that I can be sure the schema
+I am using is as expected
 
   Scenario: Verify response schema and body
     When I make a GET request to the "Has Types" endpoint for the word "vehicle"
