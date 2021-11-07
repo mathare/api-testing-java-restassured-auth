@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static com.wordsapi.steps.CommonSteps.response;
 import static com.wordsapi.steps.CommonSteps.responses;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -17,7 +18,7 @@ import static org.hamcrest.Matchers.*;
 public class EverythingSteps {
 
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
-    private final JsonPath json = JsonPath.from(CommonSteps.response.asString());
+    private final JsonPath json = JsonPath.from(response.asString());
     private final List<Map<String, String>> results = json.get("results");
     private final List<Integer> indices = new ArrayList<>();
 
