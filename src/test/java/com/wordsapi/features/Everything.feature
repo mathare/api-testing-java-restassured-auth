@@ -579,3 +579,14 @@ Feature: "Everything" Endpoint
     Then the response has a status code of 403
     And the response body contains an error message of "You are not subscribed to this API."
 
+  Scenario Outline: Unsupported REST verb - <verb>
+    When I make a <verb> request to the "Everything" endpoint for the word "error"
+    Then the response has a status code of 404
+    And the response body contains an error message of "Endpoint/words/error does not exist"
+    Examples:
+      | verb   |
+      | PATCH  |
+      | POST   |
+      | PUT    |
+      | DELETE |
+

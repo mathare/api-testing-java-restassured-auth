@@ -40,14 +40,29 @@ public class CommonSteps {
     }
 
 
-    @When("I make a GET request to the {string} endpoint for the word {string}")
-    public void makeRequest(String endpoint, String word) {
+    @When("^I make a (GET|PATCH|POST|PUT|DELETE) request to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
+    public void makeRequest(String requestType, String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             CommonSteps.endpoint = endpoint;
             CommonSteps.word = word;
             request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
-            request.header("x-rapidapi-key", System.getProperty("API_KEY"));
-            response = request.get(buildRequestURI(word, endpoint));
+            switch (requestType) {
+                case "GET":
+                    response = request.get(buildRequestURI(word, endpoint));
+                    break;
+                case "PATCH":
+                    response = request.patch(buildRequestURI(word, endpoint));
+                    break;
+                case "POST":
+                    response = request.post(buildRequestURI(word, endpoint));
+                    break;
+                case "PUT":
+                    response = request.put(buildRequestURI(word, endpoint));
+                    break;
+                case "DELETE":
+                    response = request.delete(buildRequestURI(word, endpoint));
+                    break;
+            }
             responses.add(response);
         } else {
             throw new NotImplementedException("Invalid API endpoint");
