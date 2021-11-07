@@ -10,6 +10,12 @@ I am using is as expected
     And the response body follows the expected JSON schema
     And the response body matches the expected response
 
+  Scenario: Verify "word" field in response is requested word
+    When I make a GET request to the "Type Of" endpoint for the word "hatchback"
+    Then the response has a status code of 200
+    And the response body follows the expected JSON schema
+    And the word field in the response body is "hatchback"
+
   Scenario: Verify returned types against data table
     When I make a GET request to the "Type Of" endpoint for the word "bottle"
     Then the response has a status code of 200

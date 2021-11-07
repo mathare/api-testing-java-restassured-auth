@@ -126,6 +126,11 @@ public class CommonSteps {
         assertThat(JsonPath.from(response.asString()).get("message"), equalTo(expectedMessage));
     }
 
+    @Then("the word field in the response body is {string}")
+    public void verifyWord(String word) {
+        assertThat(JsonPath.from(response.asString()).get("word"), equalTo(word));
+    }
+
     private String formatEndpoint(String endpoint) {
         return endpoint.replaceAll(" ", "").toLowerCase();
     }

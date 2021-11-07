@@ -21,11 +21,6 @@ public class EverythingSteps {
     private final List<Map<String, String>> results = json.get("results");
     private final List<Integer> indices = new ArrayList<>();
 
-    @Then("the word field in the response body is {string}")
-    public void verifyWord(String word) {
-        assertThat(json.get("word"), equalTo(word));
-    }
-
     @Then("the response body contains {int} definition(s)")
     public void verifyNumDefinitions(int numDefinitions) {
         if (numDefinitions == 0) {
