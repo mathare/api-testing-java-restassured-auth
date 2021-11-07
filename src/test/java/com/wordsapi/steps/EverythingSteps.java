@@ -111,13 +111,6 @@ public class EverythingSteps {
         assertThat(json.get("frequency"), equalTo(frequency));
     }
 
-    @Then("all response bodies are identical")
-    public void verifyAllResponsesIdentical() {
-        for (int i = 1; i < responses.size(); i++) {
-            assertThat(responses.get(i).asString(), equalTo(responses.get(0).asString()));
-        }
-    }
-
     @Then("the response bodies differ")
     public void verifyResponseBodiesDiffer() {
         // As simple comparison of responses will differ on the "word" field since each request is for a different word
