@@ -37,12 +37,6 @@ I am using is as expected
     And the response body follows the expected JSON schema
     And the word is not a "type of" anything
 
-  Scenario: Word not in dictionary returns error
-    When I make a GET request to the "Type Of" endpoint for the word "api"
-    Then the response has a status code of 404
-    And the response body follows the error JSON schema
-    And the response body contains an error message of "word not found"
-
   Scenario: Valid single letter word
     When I make a GET request to the "Type Of" endpoint for the word "a"
     Then the response has a status code of 200
@@ -84,13 +78,5 @@ I am using is as expected
     And the word is an example of the following types
       | large integer |
 
-  Scenario Outline: Get type of <description> number
-    When I make a GET request to the "Type Of" endpoint for the word "<number>"
-    Then the response has a status code of 404
-    And the response body follows the error JSON schema
-    And the response body contains an error message of "word not found"
     Examples:
-      | description | number |
-      | non-integer | 1.0    |
-      | negative    | -1     |
 
