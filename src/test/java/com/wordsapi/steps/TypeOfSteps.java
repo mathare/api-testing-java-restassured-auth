@@ -13,7 +13,7 @@ public class TypeOfSteps {
     private static final String FIELD = "typeOf";
 
     @Then("the word is an example of the following types")
-    public void verifyAgainstDataTable(DataTable dataTable) {
+    public void verifyTypesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }
 
