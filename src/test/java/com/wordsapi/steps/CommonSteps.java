@@ -47,6 +47,7 @@ public class CommonSteps {
             CommonSteps.endpoint = endpoint;
             CommonSteps.word = word;
             request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
+            request.header("x-rapidapi-key", System.getProperty("API_KEY"));
             switch (requestType) {
                 case "GET":
                     response = request.get(buildRequestURI(word, endpoint));
