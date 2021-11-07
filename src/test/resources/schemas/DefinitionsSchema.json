@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "definitions": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "definition": {
+              "type": "string"
+            },
+            "partOfSpeech": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false,
+      "required": [
+        "definition",
+        "partOfSpeech"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "word",
+    "definitions"
+  ]
+}

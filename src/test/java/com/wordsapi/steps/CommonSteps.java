@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.config.HeaderConfig.headerConfig;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
@@ -25,7 +26,8 @@ public class CommonSteps {
     private static final String BASE_RESOURCES_DIR = "src/test/resources/";
     private static final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
     private static final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
-    private static final List<String> ENDPOINTS = Arrays.asList("Everything", "Has Types", "Type Of");
+    private static final List<String> ENDPOINTS = Arrays.asList("Everything", "Definitions", "Has Types", "Type Of");
+    private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     static Response response;
     static List<Response> responses;
     private static RequestSpecification request;
@@ -38,7 +40,6 @@ public class CommonSteps {
         request.header("Content-Type", "application/json");
         responses = new ArrayList<>();
     }
-
 
     @When("^I make a (GET|PATCH|POST|PUT|DELETE) request to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
     public void makeRequest(String requestType, String endpoint, String word) {
@@ -135,6 +136,26 @@ public class CommonSteps {
     public void verifyAllResponsesIdentical() {
         for (int i = 1; i < responses.size(); i++) {
             assertThat(responses.get(i).asString(), equalTo(responses.get(0).asString()));
+        }
+    }
+
+    @Then("^(\\d+) of the definitions (?:are|is (?:a|an)) (\\w+)$")
+    public static void verifyPartsOfSpeech(int occurrences, String partOfSpeech) {
+        if (partOfSpeech.endsWith("s")) partOfSpeech = partOfSpeech.substring(0, partOfSpeech.length() - 1);
+        if (PARTS_OF_SPEECH.contains(partOfSpeech)) {
+            int count = 0;
+            List<Map<String, String>> results = new ArrayList<>();
+            if (endpoint.equals("Everything")) {
+                results= JsonPath.from(response.asString()).get("results");
+            } else if (endpoint.equals("Definitions")) {
+                results= JsonPath.from(response.asString()).get("definitions");
+            }
+            for (Map<String, String> result : results) {
+                if (result.get("partOfSpeech") != null && result.get("partOfSpeech").equals(partOfSpeech)) count++;
+            }
+            assertThat(count, equalTo(occurrences));
+        } else {
+            throw new NotImplementedException("Unknown part of speech: " + partOfSpeech);
         }
     }
 

@@ -3,10 +3,8 @@ package com.wordsapi.steps;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.restassured.path.json.JsonPath;
-import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,6 @@ import static org.hamcrest.Matchers.*;
 
 public class EverythingSteps {
 
-    private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     private final JsonPath json = JsonPath.from(response.asString());
     private final List<Map<String, String>> results = json.get("results");
     private final List<Integer> indices = new ArrayList<>();
@@ -45,23 +42,9 @@ public class EverythingSteps {
         }
     }
 
-    @Then("^(\\d+) of the definitions (?:are|is (?:a|an)) (\\w+)$")
-    public void verifyPartsOfSpeech(int occurrences, String partOfSpeech) {
-        if (partOfSpeech.endsWith("s")) partOfSpeech = partOfSpeech.substring(0, partOfSpeech.length() - 1);
-        if (PARTS_OF_SPEECH.contains(partOfSpeech)) {
-            int count = 0;
-            for (Map<String, String> result : results) {
-                if (result.get("partOfSpeech") != null && result.get("partOfSpeech").equals(partOfSpeech)) count++;
-            }
-            assertThat(count, equalTo(occurrences));
-        } else {
-            throw new NotImplementedException("Unknown part of speech: " + partOfSpeech);
-        }
-    }
-
     @Then("^all the definitions are (\\w+)$")
-    public void verifyPartsOfSpeech(String partOfSpeech) {
-        verifyPartsOfSpeech(results.size(), partOfSpeech);
+    public void verifyAllPartsOfSpeech(String partOfSpeech) {
+        CommonSteps.verifyPartsOfSpeech(results.size(), partOfSpeech);
     }
 
     @Then("^the \"(\\w+)\" field in the (\\d+).{2} result has the following values")
