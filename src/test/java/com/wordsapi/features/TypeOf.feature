@@ -1,4 +1,4 @@
-#noinspection CucumberTableInspection
+#noinspection CucumberTableInspection, SpellCheckingInspection
 Feature: "Type Of" Endpoint
 
   Scenario: Verify response schema and body
