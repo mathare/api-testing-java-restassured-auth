@@ -34,7 +34,7 @@ public class CommonSteps {
     private static String endpoint, word;
 
     @Before
-    public void setup() {
+    public static void setup() {
         RestAssured.baseURI = "https://wordsapiv1.p.rapidapi.com/words/";
         request = RestAssured.given();
         request.header("Content-Type", "application/json");
@@ -42,7 +42,7 @@ public class CommonSteps {
     }
 
     @When("^I make a (GET|PATCH|POST|PUT|DELETE) request to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
-    public void makeRequest(String requestType, String endpoint, String word) {
+    public static void makeRequest(String requestType, String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             CommonSteps.endpoint = endpoint;
             CommonSteps.word = word;
@@ -72,7 +72,7 @@ public class CommonSteps {
     }
 
     @When("^I make a GET request without an API key header to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
-    public void makeUnauthorisedRequestNoAPIKeyHeader(String endpoint, String word) {
+    public static void makeUnauthorisedRequestNoAPIKeyHeader(String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             response = request.get(buildRequestURI(word, endpoint));
             responses.add(response);
@@ -82,7 +82,7 @@ public class CommonSteps {
     }
 
     @When("^I make a GET request with an invalid API key header to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
-    public void makeUnauthorisedRequestInvalidAPIKeyHeader(String endpoint, String word) {
+    public static void makeUnauthorisedRequestInvalidAPIKeyHeader(String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
             request.header("invalid-api-key-header", System.getProperty("API_KEY"));
@@ -94,7 +94,7 @@ public class CommonSteps {
     }
 
     @When("^I make a GET request with an invalid API key value to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
-    public void makeUnauthorisedRequestInvalidAPIKeyValue(String endpoint, String word) {
+    public static void makeUnauthorisedRequestInvalidAPIKeyValue(String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
             request.header("x-rapidapi-key", "1234567890");
@@ -106,35 +106,35 @@ public class CommonSteps {
     }
 
     @Then("the response has a status code of {int}")
-    public void verifyResponseStatusCode(int code) {
+    public static void verifyResponseStatusCode(int code) {
         assertThat(response.getStatusCode(), equalTo(code));
     }
 
     @Then("^the response body follows the (expected|error) JSON schema$")
-    public void verifyResponseBodyAgainstJsonSchema(String type) {
+    public static void verifyResponseBodyAgainstJsonSchema(String type) {
         assertThat(response.asString(), type.equals("error") ?
                 matchesJsonSchema(getJsonSchema("Error")) :
                 matchesJsonSchema(getJsonSchema(endpoint)));
     }
 
     @Then("the response body matches the expected response")
-    public void verifyResponseBodyAgainstExpectedResponse() {
+    public static void verifyResponseBodyAgainstExpectedResponse() {
         Object expectedResponse = getExpectedResponse(endpoint, word);
         assertThat(JsonPath.from(response.asString()).get(), equalTo(expectedResponse));
     }
 
     @Then("the response body contains an error message of {string}")
-    public void verifyResponseBodyErrorMessage(String expectedMessage) {
+    public static void verifyResponseBodyErrorMessage(String expectedMessage) {
         assertThat(JsonPath.from(response.asString()).get("message"), equalTo(expectedMessage));
     }
 
     @Then("the word field in the response body is {string}")
-    public void verifyWord(String word) {
+    public static void verifyWord(String word) {
         assertThat(JsonPath.from(response.asString()).get("word"), equalTo(word));
     }
 
     @Then("all response bodies are identical")
-    public void verifyAllResponsesIdentical() {
+    public static void verifyAllResponsesIdentical() {
         for (int i = 1; i < responses.size(); i++) {
             assertThat(responses.get(i).asString(), equalTo(responses.get(0).asString()));
         }
@@ -147,9 +147,9 @@ public class CommonSteps {
             int count = 0;
             List<Map<String, String>> results = new ArrayList<>();
             if (endpoint.equals("Everything")) {
-                results= JsonPath.from(response.asString()).get("results");
+                results = JsonPath.from(response.asString()).get("results");
             } else if (endpoint.equals("Definitions")) {
-                results= JsonPath.from(response.asString()).get("definitions");
+                results = JsonPath.from(response.asString()).get("definitions");
             }
             for (Map<String, String> result : results) {
                 if (result.get("partOfSpeech") != null && result.get("partOfSpeech").equals(partOfSpeech)) count++;
@@ -160,19 +160,19 @@ public class CommonSteps {
         }
     }
 
-    private String formatEndpoint(String endpoint) {
+    private static String formatEndpoint(String endpoint) {
         return endpoint.replaceAll(" ", "").toLowerCase();
     }
 
-    private String buildRequestURI(String word, String endpoint) {
+    private static String buildRequestURI(String word, String endpoint) {
         return endpoint.equals("Everything") ? word.toLowerCase() : (word + "/" + formatEndpoint(endpoint)).toLowerCase();
     }
 
-    private File getJsonSchema(String schemaName) {
+    private static File getJsonSchema(String schemaName) {
         return new File(SCHEMAS_DIR + schemaName.replaceAll(" ", "") + "Schema.json");
     }
 
-    private Object getExpectedResponse(String endpoint, String word) {
+    private static Object getExpectedResponse(String endpoint, String word) {
         word = word.substring(0, 1).toUpperCase() + word.substring(1);
         String filename = EXPECTED_RESPONSES_DIR + formatEndpoint(endpoint) + "/" + word + "Response.json";
         return JsonPath.from(new File(filename)).get();
