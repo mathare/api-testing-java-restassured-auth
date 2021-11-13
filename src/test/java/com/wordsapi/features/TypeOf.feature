@@ -199,17 +199,17 @@ I am using is as expected
       | process   |
 
   Scenario: Unauthorised GET request - no API key header
-    When I make a GET request without an API key header to the "Type Of" endpoint for the phrase "floor"
+    When I make a GET request without an API key header to the "Type Of" endpoint for the word "floor"
     Then the response has a status code of 401
     And the response body contains an error message of "Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."
 
   Scenario: Unauthorised GET request - invalid API key header
-    When I make a GET request with an invalid API key header to the "Type Of" endpoint for the phrase "floor"
+    When I make a GET request with an invalid API key header to the "Type Of" endpoint for the word "floor"
     Then the response has a status code of 401
     And the response body contains an error message of "Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."
 
   Scenario: Unauthorised GET request - invalid API key value
-    When I make a GET request with an invalid API key value to the "Type Of" endpoint for the phrase "floor"
+    When I make a GET request with an invalid API key value to the "Type Of" endpoint for the word "floor"
     Then the response has a status code of 403
     And the response body contains an error message of "You are not subscribed to this API."
 
