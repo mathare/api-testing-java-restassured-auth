@@ -71,7 +71,7 @@ public class CommonSteps {
         }
     }
 
-    @When("^I make a GET request without an API key header to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
+    @When("^I make a GET request without an API key header to the \"(.*)\" endpoint for the word \"(.*)\"")
     public static void makeUnauthorisedRequestNoAPIKeyHeader(String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             response = request.get(buildRequestURI(word, endpoint));
@@ -81,7 +81,7 @@ public class CommonSteps {
         }
     }
 
-    @When("^I make a GET request with an invalid API key header to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
+    @When("^I make a GET request with an invalid API key header to the \"(.*)\" endpoint for the word \"(.*)\"")
     public static void makeUnauthorisedRequestInvalidAPIKeyHeader(String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
@@ -93,7 +93,7 @@ public class CommonSteps {
         }
     }
 
-    @When("^I make a GET request with an invalid API key value to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"")
+    @When("^I make a GET request with an invalid API key value to the \"(.*)\" endpoint for the word \"(.*)\"")
     public static void makeUnauthorisedRequestInvalidAPIKeyValue(String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
             request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));

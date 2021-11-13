@@ -159,17 +159,17 @@ I am using is as expected
     And the word has 30 types
 
   Scenario: Unauthorised GET request - no API key header
-    When I make a GET request without an API key header to the "Has Types" endpoint for the phrase "wall"
+    When I make a GET request without an API key header to the "Has Types" endpoint for the word "wall"
     Then the response has a status code of 401
     And the response body contains an error message of "Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."
 
   Scenario: Unauthorised GET request - invalid API key header
-    When I make a GET request with an invalid API key header to the "Has Types" endpoint for the phrase "wall"
+    When I make a GET request with an invalid API key header to the "Has Types" endpoint for the word "wall"
     Then the response has a status code of 401
     And the response body contains an error message of "Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."
 
   Scenario: Unauthorised GET request - invalid API key value
-    When I make a GET request with an invalid API key value to the "Has Types" endpoint for the phrase "wall"
+    When I make a GET request with an invalid API key value to the "Has Types" endpoint for the word "wall"
     Then the response has a status code of 403
     And the response body contains an error message of "You are not subscribed to this API."
 

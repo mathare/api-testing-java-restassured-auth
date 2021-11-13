@@ -575,17 +575,17 @@ exploratory tests help to reveal and document the system behaviour under various
     Then the response bodies differ
 
   Scenario: Unauthorised GET request - no API key header
-    When I make a GET request without an API key header to the "Everything" endpoint for the phrase "doorway"
+    When I make a GET request without an API key header to the "Everything" endpoint for the word "doorway"
     Then the response has a status code of 401
     And the response body contains an error message of "Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."
 
   Scenario: Unauthorised GET request - invalid API key header
-    When I make a GET request with an invalid API key header to the "Everything" endpoint for the phrase "doorway"
+    When I make a GET request with an invalid API key header to the "Everything" endpoint for the word "doorway"
     Then the response has a status code of 401
     And the response body contains an error message of "Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."
 
   Scenario: Unauthorised GET request - invalid API key value
-    When I make a GET request with an invalid API key value to the "Everything" endpoint for the phrase "doorway"
+    When I make a GET request with an invalid API key value to the "Everything" endpoint for the word "doorway"
     Then the response has a status code of 403
     And the response body contains an error message of "You are not subscribed to this API."
 
