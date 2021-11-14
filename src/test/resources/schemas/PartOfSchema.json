@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "partOf": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "word",
+    "partOf"
+  ]
+}
