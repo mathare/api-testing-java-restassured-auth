@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "rhymes": {
+      "type": "object",
+      "properties": {
+        "all": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "noun": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "verb": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "word",
+    "rhymes"
+  ]
+}
