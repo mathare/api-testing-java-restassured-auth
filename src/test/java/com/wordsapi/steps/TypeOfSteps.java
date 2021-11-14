@@ -17,7 +17,7 @@ public class TypeOfSteps {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }
 
-    @Then("the word is not a \"type of\" anything")
+    @Then("the word is not a type of anything")
     public void verifyTypeOfArrayEmpty() {
         assertThat(JsonPath.from(response.asString()).get(FIELD), empty());
     }

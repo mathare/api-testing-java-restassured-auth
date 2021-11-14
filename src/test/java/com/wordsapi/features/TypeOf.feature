@@ -35,7 +35,7 @@ I am using is as expected
     When I make a GET request to the "Type Of" endpoint for the word "unique"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is not a "type of" anything
+    And the word is not a type of anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Type Of" endpoint for the word "a"
@@ -82,7 +82,7 @@ I am using is as expected
     When I make a GET request to the "Type Of" endpoint for the word "1st"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is not a "type of" anything
+    And the word is not a type of anything
 
   Scenario: Numbers as words
     When I make a GET request to the "Type Of" endpoint for the word "three"
@@ -117,7 +117,7 @@ I am using is as expected
 
   Scenario: Ordinal numbers and words have different types
     When I make a GET request to the "Type Of" endpoint for the word "1st"
-    Then the word is not a "type of" anything
+    Then the word is not a type of anything
     When I make a GET request to the "Type Of" endpoint for the word "first"
     Then the word is an example of the following types
       | position       |
@@ -154,7 +154,7 @@ I am using is as expected
     When I make a GET request to the "Type Of" endpoint for the word "we've"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is not a "type of" anything
+    And the word is not a type of anything
 
   Scenario: Word parameter is not case sensitive
     When I make a GET request to the "Type Of" endpoint for the word "chair"
