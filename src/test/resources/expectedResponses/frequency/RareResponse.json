@@ -1,0 +1,8 @@
+{
+  "word": "rare",
+  "frequency": {
+    "zipf": 4.36,
+    "perMillion": 23.02,
+    "diversity": 0.11
+  }
+}

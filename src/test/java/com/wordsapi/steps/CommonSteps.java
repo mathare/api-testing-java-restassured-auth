@@ -27,7 +27,6 @@ public class CommonSteps {
     private static final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
     private static final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
     private static final List<String> ENDPOINTS = Arrays.asList("Antonyms", "Definitions", "Everything", "Examples",
-            "Has Types", "Rhymes", "Synonyms", "Type Of");
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     static Response response;
     static List<Response> responses;

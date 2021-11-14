@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "object",
+      "properties": {
+        "zipf": {
+          "type": "number"
+        },
+        "perMillion": {
+          "type": "number"
+        },
+        "diversity": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "zipf",
+        "perMillion",
+        "diversity"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "word"
+  ]
+}
