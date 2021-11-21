@@ -1,4 +1,4 @@
-#noinspection CucumberTableInspection, SpellCheckingInspection
+#noinspection SpellCheckingInspection
 Feature: "Region Of" Endpoint
   I wouldn't generally validate the schema for every response but having identified issues with the documented schema for
   the "Everything" endpoint I have chosen to add the schema validation step to all tests so that I can be sure the schema
