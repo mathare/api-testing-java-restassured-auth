@@ -26,10 +26,10 @@ public class CommonSteps {
     private static final String BASE_RESOURCES_DIR = "src/test/resources/";
     private static final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
     private static final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
-    private static final List<String> ENDPOINTS = Arrays.asList("Also", "Antonyms", "Definitions", "Everything", "Examples",
-            "Frequency", "Has Categories", "Has Instances", "Has Members", "Has Parts", "Has Substances", "Has Types",
-            "Has Usages", "In Category", "In Region", "Instance Of", "Member Of", "Part Of", "Pertains To", "Region Of",
-            "Rhymes", "Similar To", "Substance Of", "Synonyms", "Type Of", "Usage Of");
+    private static final List<String> ENDPOINTS = Arrays.asList("Also", "Antonyms", "Definitions", "Entails", "Everything",
+            "Examples", "Frequency", "Has Categories", "Has Instances", "Has Members", "Has Parts", "Has Substances",
+            "Has Types", "Has Usages", "In Category", "In Region", "Instance Of", "Member Of", "Part Of", "Pertains To",
+            "Region Of", "Rhymes", "Similar To", "Substance Of", "Synonyms", "Type Of", "Usage Of");
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     static Response response;
     static List<Response> responses;
