@@ -104,7 +104,7 @@ Feature: "Rhymes" Endpoint
     When I make a GET request to the "Rhymes" endpoint for the phrase "burning ember"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has 22 rhymes
+    And the phrase has 22 rhymes
 
   Scenario: Hyphenated words
     When I make a GET request to the "Rhymes" endpoint for the word "long-lasting"
@@ -146,7 +146,7 @@ Feature: "Rhymes" Endpoint
     When I make a GET request to the "Rhymes" endpoint for the phrase "compos mentis"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has 5 rhymes
+    And the phrase has 5 rhymes
 
   Scenario: Unauthorised GET request - no API key header
     When I make a GET request without an API key header to the "Rhymes" endpoint for the word "painting"

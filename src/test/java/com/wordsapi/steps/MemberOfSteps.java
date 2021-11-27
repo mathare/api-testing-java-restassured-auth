@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class MemberOfSteps {
     private static final String FIELD = "memberOf";
 
-    @Then("the word is a member of the following")
+    @Then("^the (?:word|phrase) is a member of the following$")
     public void verifyMembersAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

@@ -72,7 +72,7 @@ Feature: "Has Substances" Endpoint
     When I make a GET request to the "Has Substances" endpoint for the phrase "weed killer"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following substances
+    And the phrase has the following substances
       | atomic number 33 |
       | arsenic          |
       | as               |
@@ -97,15 +97,15 @@ Feature: "Has Substances" Endpoint
     Then all response bodies are identical
 
   Scenario: Popular brand name
-    When I make a GET request to the "Has Substances" endpoint for the word "tabasco sauce"
+    When I make a GET request to the "Has Substances" endpoint for the phrase "tabasco sauce"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following substances
+    And the phrase has the following substances
       | red pepper |
       | tabasco    |
 
-  Scenario: Valid foreign phrase used in English
-    When I make a GET request to the "Has Substances" endpoint for the phrase "jalapeno"
+  Scenario: Valid foreign word used in English
+    When I make a GET request to the "Has Substances" endpoint for the word "jalapeno"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
     And the word has the following substances

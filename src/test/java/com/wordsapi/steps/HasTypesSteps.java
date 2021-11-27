@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class HasTypesSteps {
     private static final String FIELD = "hasTypes";
 
-    @Then("the word has the following types")
+    @Then("^the (?:word|phrase) has the following types$")
     public void verifyTypesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }
@@ -21,7 +21,7 @@ public class HasTypesSteps {
         assertThat(JsonPath.from(response.asString()).get(FIELD), empty());
     }
 
-    @Then("the word has {int} types")
+    @Then("^the (?:word|phrase) has (\\d+) types$")
     public void verifyNumTypes(int numTypes) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), hasSize(numTypes));
     }

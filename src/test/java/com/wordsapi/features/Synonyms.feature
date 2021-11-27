@@ -135,7 +135,7 @@ Feature: "Synonyms" Endpoint
     When I make a GET request to the "Synonyms" endpoint for the phrase "racing car"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following synonyms
+    And the phrase has the following synonyms
       | race car |
       | racer    |
 
@@ -184,7 +184,7 @@ Feature: "Synonyms" Endpoint
     When I make a GET request to the "Synonyms" endpoint for the phrase "pro rata"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following synonyms
+    And the phrase has the following synonyms
       | proportionately |
 
   Scenario: Unauthorised GET request - no API key header

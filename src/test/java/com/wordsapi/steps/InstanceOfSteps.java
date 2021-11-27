@@ -12,12 +12,12 @@ import static org.hamcrest.Matchers.equalTo;
 public class InstanceOfSteps {
     private static final String FIELD = "instanceOf";
 
-    @Then("the word is an instance of the following")
+    @Then("^the (?:word|phrase) is an instance of the following$")
     public void verifyInstancesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }
 
-    @Then("the word is not an instance of anything")
+    @Then("^the (?:word|phrase) is not an instance of anything$")
     public void verifyInstancOfArrayEmpty() {
         assertThat(JsonPath.from(response.asString()).get(FIELD), empty());
     }

@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class EntailsSteps {
     private static final String FIELD = "entails";
 
-    @Then("the word entails the following")
+    @Then("^the (?:word|phrase) entails the following$")
     public void verifyAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

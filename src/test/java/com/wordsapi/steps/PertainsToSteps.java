@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class PertainsToSteps {
     private static final String FIELD = "pertainsTo";
 
-    @Then("the word pertains to the following")
+    @Then("^the (?:word|phrase) pertains to the following$")
     public void verifyAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

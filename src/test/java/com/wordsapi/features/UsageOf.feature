@@ -75,7 +75,7 @@ Feature: "Usage Of" Endpoint
     When I make a GET request to the "Usage Of" endpoint for the phrase "home run"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is an example usage of the following
+    And the phrase is an example usage of the following
       | trope            |
       | figure of speech |
       | figure           |
@@ -126,7 +126,7 @@ Feature: "Usage Of" Endpoint
     When I make a GET request to the "Usage Of" endpoint for the phrase "fin de siecle"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is an example usage of the following
+    And the phrase is an example usage of the following
       | french |
 
   Scenario: Unauthorised GET request - no API key header

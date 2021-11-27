@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class UsageOfSteps {
     private static final String FIELD = "usageOf";
 
-    @Then("the word is an example usage of the following")
+    @Then("^the (?:word|phrase) is an example usage of the following$")
     public void verifyUsagesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

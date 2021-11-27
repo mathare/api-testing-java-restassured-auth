@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class SubstanceOfSteps {
     private static final String FIELD = "substanceOf";
 
-    @Then("the word is a substance of the following")
+    @Then("^the (?:word|phrase) is a substance of the following$")
     public void verifyAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

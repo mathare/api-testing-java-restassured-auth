@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class HasMembersSteps {
     private static final String FIELD = "hasMembers";
 
-    @Then("the word has the following members")
+    @Then("^the (?:word|phrase) has the following members$")
     public void verifyMembersAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }
@@ -21,7 +21,7 @@ public class HasMembersSteps {
         assertThat(JsonPath.from(response.asString()).get(FIELD), empty());
     }
 
-    @Then("the word has {int} members")
+    @Then("^the (?:word|phrase) has (\\d+) members$")
     public void verifyNumMembes(int numMembers) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), hasSize(numMembers));
     }

@@ -31,7 +31,7 @@ public class RhymesSteps {
         assertThat(JsonPath.from(response.asString()).get(field), hasSize(numRhymes));
     }
 
-    @Then("the word has {int} rhyme(s)")
+    @Then("^the (?:word|phrase) has (\\d+) rhymes?$")
     public void verifyNumRhymes(int numRhymes) {
         assertThat(JsonPath.from(response.asString()).get(ALL), hasSize(numRhymes));
     }

@@ -21,7 +21,7 @@ public class HasUsagesSteps {
         assertThat(JsonPath.from(response.asString()).get(FIELD), empty());
     }
 
-    @Then("the word has {int} usages")
+    @Then("^the (?:word|phrase) has (\\d+) usages$")
     public void verifyNumUsages(int numUsages) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), hasSize(numUsages));
     }

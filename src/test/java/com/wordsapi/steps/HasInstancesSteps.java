@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class HasInstancesSteps {
     private static final String FIELD = "hasInstances";
 
-    @Then("the word has the following instances")
+    @Then("^the (?:word|phrase) has the following instances$")
     public void verifyInstancesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

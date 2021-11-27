@@ -95,7 +95,7 @@ Feature: "Has Parts" Endpoint
     When I make a GET request to the "Has Parts" endpoint for the phrase "sports stadium"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following parts
+    And the phrase has the following parts
       | tiered seat    |
       | athletic field |
       | field          |
@@ -148,8 +148,8 @@ Feature: "Has Parts" Endpoint
       | kbit     |
       | kilobit  |
 
-  Scenario: Valid foreign phrase used in English
-    When I make a GET request to the "Has Parts" endpoint for the phrase "tete-a-tete"
+  Scenario: Valid foreign word used in English
+    When I make a GET request to the "Has Parts" endpoint for the word "tete-a-tete"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
     And the word has no parts

@@ -136,7 +136,7 @@ I am using is as expected
     When I make a GET request to the "Type Of" endpoint for the phrase "vitamin D"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is an example of the following types
+    And the phrase is an example of the following types
       | fat-soluble vitamin |
 
   Scenario: Hyphenated words
@@ -194,7 +194,7 @@ I am using is as expected
     When I make a GET request to the "Type Of" endpoint for the phrase "modus operandi"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is an example of the following types
+    And the phrase is an example of the following types
       | procedure |
       | process   |
 

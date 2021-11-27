@@ -75,7 +75,7 @@ Feature: "Has Members" Endpoint
     When I make a GET request to the "Has Members" endpoint for the phrase "cactus family"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has 53 members
+    And the phrase has 53 members
 
   Scenario: Hyphenated words
     When I make a GET request to the "Has Members" endpoint for the word "kwazulu-natal"
@@ -116,7 +116,7 @@ Feature: "Has Members" Endpoint
     When I make a GET request to the "Has Members" endpoint for the phrase "genus falco"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following members
+    And the phrase has the following members
       | falco columbarius |
       | falco peregrinus  |
       | falco rusticolus  |

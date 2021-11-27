@@ -79,7 +79,7 @@ Feature: "In Category" Endpoint
     When I make a GET request to the "In Category" endpoint for the phrase "nuclear reactor"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is in the following categories
+    And the phrase is in the following categories
       | physics            |
       | natural philosophy |
 
@@ -95,7 +95,7 @@ Feature: "In Category" Endpoint
     When I make a GET request to the "In Category" endpoint for the phrase "pitcher's mound"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is in the following categories
+    And the phrase is in the following categories
       | ball          |
       | baseball      |
       | baseball game |
@@ -131,7 +131,7 @@ Feature: "In Category" Endpoint
     When I make a GET request to the "In Category" endpoint for the phrase "non sequitur"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is in the following categories
+    And the phrase is in the following categories
       | logic |
 
   Scenario: Unauthorised GET request - no API key header

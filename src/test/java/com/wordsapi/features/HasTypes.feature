@@ -103,7 +103,7 @@ I am using is as expected
     When I make a GET request to the "Has Types" endpoint for the phrase "record player"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following types
+    And the phrase has the following types
       | acoustic gramophone |
       | gramophone          |
       | jukebox             |
@@ -156,7 +156,7 @@ I am using is as expected
     When I make a GET request to the "Has Types" endpoint for the phrase "persona non grata"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has 30 types
+    And the phrase has 30 types
 
   Scenario: Unauthorised GET request - no API key header
     When I make a GET request without an API key header to the "Has Types" endpoint for the word "wall"

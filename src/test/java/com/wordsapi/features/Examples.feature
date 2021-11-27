@@ -98,7 +98,7 @@ Feature: "Examples" Endpoint
     When I make a GET request to the "Examples" endpoint for the phrase "point of view"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following examples
+    And the phrase has the following examples
       | teaching history gave him a special point of view toward current events |
 
   Scenario: Hyphenated words
@@ -144,7 +144,7 @@ Feature: "Examples" Endpoint
     When I make a GET request to the "Examples" endpoint for the phrase "a priori"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following examples
+    And the phrase has the following examples
       | an a priori judgment |
 
   Scenario: Unauthorised GET request - no API key header

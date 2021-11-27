@@ -56,7 +56,7 @@ Feature: "Has Usages" Endpoint
     When I make a GET request to the "Has Usages" endpoint for the phrase "figure of speech"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has 21 usages
+    And the phrase has 21 usages
 
   Scenario: Word parameter is not case sensitive
     When I make a GET request to the "Has Usages" endpoint for the word "trope"

@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.*;
 public class DefinitionsSteps {
     private static final String FIELD = "definitions";
 
-    @Then("the word has the following definitions")
+    @Then("^the (?:word|phrase) has the following definitions$")
     public void verifyDefinitionsAgainstDataTable(DataTable dataTable) {
         //Strip header row off datatable
         dataTable = dataTable.rows(1);

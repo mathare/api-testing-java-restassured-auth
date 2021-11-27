@@ -35,7 +35,7 @@ public class FrequencySteps {
         assertThat(JsonPath.from(response.asString()).get(FIELD + "." + frequencyType), equalTo(frequencyValue));
     }
 
-    @Then("the word has no frequency values")
+    @Then("^the (?:word|phrase) has no frequency values$")
     public void verifyNoFrequencyValues() {
         assertThat(JsonPath.from(response.asString()).get(FIELD), nullValue());
     }

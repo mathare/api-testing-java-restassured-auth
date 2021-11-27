@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class SimilarToSteps {
     private static final String FIELD = "similarTo";
 
-    @Then("the word is similar to the following")
+    @Then("^the (?:word|phrase) is similar to the following$")
     public void verifyAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

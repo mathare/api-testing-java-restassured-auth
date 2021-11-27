@@ -105,7 +105,7 @@ Feature: "Frequency" Endpoint
     When I make a GET request to the "Frequency" endpoint for the phrase "radio beam"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no frequency values
+    And the phrase has no frequency values
 
   Scenario: Hyphenated words
     When I make a GET request to the "Frequency" endpoint for the word "right-handed"
@@ -155,7 +155,7 @@ Feature: "Frequency" Endpoint
     When I make a GET request to the "Frequency" endpoint for the phrase "per capita"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no frequency values
+    And the phrase has no frequency values
 
   Scenario: Unauthorised GET request - no API key header
     When I make a GET request without an API key header to the "Frequency" endpoint for the word "kitchen"

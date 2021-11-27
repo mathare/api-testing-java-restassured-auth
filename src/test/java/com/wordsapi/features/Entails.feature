@@ -71,7 +71,7 @@ Feature: "Entails" Endpoint
     When I make a GET request to the "Entails" endpoint for the phrase "pull through"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word entails the following
+    And the phrase entails the following
       | convalesce |
       | recover    |
       | recuperate |
@@ -90,7 +90,7 @@ Feature: "Entails" Endpoint
     When I make a GET request to the "Entails" endpoint for the phrase "make up one's mind"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word entails the following
+    And the phrase entails the following
       | debate     |
       | deliberate |
 

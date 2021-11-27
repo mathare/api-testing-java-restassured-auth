@@ -64,7 +64,7 @@ Feature: "Antonyms" Endpoint
     When I make a GET request to the "Antonyms" endpoint for the phrase "direct current"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following antonyms
+    And the phrase has the following antonyms
       | alternating current |
 
   Scenario: Hyphenated words
@@ -105,7 +105,7 @@ Feature: "Antonyms" Endpoint
     When I make a GET request to the "Antonyms" endpoint for the phrase "a la carte"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following antonyms
+    And the phrase has the following antonyms
       | table d'hote |
 
   Scenario: Unauthorised GET request - no API key header

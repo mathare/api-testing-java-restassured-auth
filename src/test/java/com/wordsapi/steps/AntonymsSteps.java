@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class AntonymsSteps {
     private static final String FIELD = "antonyms";
 
-    @Then("the word has the following antonyms")
+    @Then("^the (?:word|phrase) has the following antonyms$")
     public void verifyAntonymsAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

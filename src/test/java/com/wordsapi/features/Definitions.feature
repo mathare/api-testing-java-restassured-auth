@@ -136,12 +136,12 @@ Feature: "Definitions" Endpoint
     When I make a GET request to the "Definitions" endpoint for the phrase "carving knife"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following definitions
+    And the phrase has the following definitions
       | definition                              | part of Speech |
       | a large knife used to carve cooked meat | noun           |
 
   Scenario: Hyphenated word definition
-    When I make a GET request to the "Definitions" endpoint for the phrase "yo-yo"
+    When I make a GET request to the "Definitions" endpoint for the word "yo-yo"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
     And the word has the following definitions
@@ -188,7 +188,7 @@ Feature: "Definitions" Endpoint
     When I make a GET request to the "Definitions" endpoint for the phrase "deja vu"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following definitions
+    And the phrase has the following definitions
       | definition                                                          | part of Speech |
       | the experience of thinking that a new situation had occurred before | noun           |
 

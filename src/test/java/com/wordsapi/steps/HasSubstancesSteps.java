@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class HasSubstancesSteps {
     private static final String FIELD = "hasSubstances";
 
-    @Then("the word has the following substances")
+    @Then("^the (?:word|phrase) has the following substances$")
     public void verifySubstancesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

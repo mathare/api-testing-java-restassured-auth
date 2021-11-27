@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class AlsoSteps {
     private static final String FIELD = "also";
 
-    @Then("the word has the following \"also\" values")
+    @Then("^the (?:word|phrase) has the following \"also\" values$")
     public void verifyAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

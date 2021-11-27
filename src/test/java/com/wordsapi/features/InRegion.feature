@@ -74,7 +74,7 @@ Feature: "In Region" Endpoint
     When I make a GET request to the "In Region" endpoint for the phrase "social security number"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is used in the following regions
+    And the phrase is used in the following regions
       | usa                      |
       | america                  |
       | the states               |
@@ -136,7 +136,7 @@ Feature: "In Region" Endpoint
     When I make a GET request to the "In Region" endpoint for the phrase "don juan"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is used in the following regions
+    And the phrase is used in the following regions
       | espana           |
       | kingdom of spain |
       | spain            |

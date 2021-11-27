@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class PartOfSteps {
     private static final String FIELD = "partOf";
 
-    @Then("the word is a part of the following")
+    @Then("^the (?:word|phrase) is a part of the following$")
     public void verifyPartsAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

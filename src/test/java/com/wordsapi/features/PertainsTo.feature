@@ -65,7 +65,7 @@ Feature: "Pertains To" Endpoint
     When I make a GET request to the "Pertains To" endpoint for the phrase "roman catholic"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word pertains to the following
+    And the phrase pertains to the following
       | romanism |
 
   Scenario: Hyphenated words
@@ -109,7 +109,7 @@ Feature: "Pertains To" Endpoint
     When I make a GET request to the "Pertains To" endpoint for the phrase "ad infinitum"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word pertains to the following
+    And the phrase pertains to the following
       | infinite |
 
   Scenario: Unauthorised GET request - no API key header

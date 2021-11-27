@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class InRegionSteps {
     private static final String FIELD = "inRegion";
 
-    @Then("the word is used in the following regions")
+    @Then("^the (?:word|phrase) is used in the following regions$")
     public void verifyRegionsAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

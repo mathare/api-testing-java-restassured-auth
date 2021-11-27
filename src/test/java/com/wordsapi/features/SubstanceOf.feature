@@ -85,7 +85,7 @@ Feature: "Substance Of" Endpoint
     When I make a GET request to the "Substance Of" endpoint for the phrase "potassium nitrate"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is a substance of the following
+    And the phrase is a substance of the following
       | fertiliser |
       | fertilizer |
       | plant food |
@@ -134,7 +134,7 @@ Feature: "Substance Of" Endpoint
     When I make a GET request to the "Substance Of" endpoint for the phrase "dura mater"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is a substance of the following
+    And the phrase is a substance of the following
       | tentorium |
 
   Scenario: Unauthorised GET request - no API key header

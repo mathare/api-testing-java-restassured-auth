@@ -82,7 +82,7 @@ Feature: "Has Instances" Endpoint
     When I make a GET request to the "Has Instances" endpoint for the phrase "search engine"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following instances
+    And the phrase has the following instances
       | google     |
       | ask jeeves |
       | yahoo      |

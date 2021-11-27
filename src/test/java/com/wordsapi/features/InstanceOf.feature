@@ -78,7 +78,7 @@ Feature: "Instance Of" Endpoint
     When I make a GET request to the "Instance Of" endpoint for the phrase "middle ages"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is an instance of the following
+    And the phrase is an instance of the following
       | historic period |
       | age             |
 
@@ -127,7 +127,7 @@ Feature: "Instance Of" Endpoint
     When I make a GET request to the "Instance Of" endpoint for the phrase "al dente"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is not an instance of anything
+    And the phrase is not an instance of anything
 
   Scenario: Unauthorised GET request - no API key header
     When I make a GET request without an API key header to the "Instance Of" endpoint for the word "kitchen"

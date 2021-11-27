@@ -96,7 +96,7 @@ Feature: "Member Of" Endpoint
     When I make a GET request to the "Member Of" endpoint for the phrase "oak tree"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is a member of the following
+    And the phrase is a member of the following
       | genus quercus |
       | quercus       |
 
@@ -153,7 +153,7 @@ Feature: "Member Of" Endpoint
     When I make a GET request to the "Member Of" endpoint for the phrase "genus homo"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is a member of the following
+    And the phrase is a member of the following
       | hominidae        |
       | family hominidae |
 

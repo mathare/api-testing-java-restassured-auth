@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class TypeOfSteps {
     private static final String FIELD = "typeOf";
 
-    @Then("the word is an example of the following types")
+    @Then("^the (?:word|phrase) is an example of the following types$")
     public void verifyTypesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

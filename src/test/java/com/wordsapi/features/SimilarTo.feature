@@ -93,7 +93,7 @@ Feature: "Similar To" Endpoint
     When I make a GET request to the "Similar To" endpoint for the phrase "out of the blue"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is similar to the following
+    And the phrase is similar to the following
       | unexpected |
 
   Scenario: Hyphenated words
@@ -108,7 +108,7 @@ Feature: "Similar To" Endpoint
     When I make a GET request to the "Similar To" endpoint for the phrase "on one's guard"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is similar to the following
+    And the phrase is similar to the following
       | wary |
 
   Scenario: Word parameter is not case sensitive

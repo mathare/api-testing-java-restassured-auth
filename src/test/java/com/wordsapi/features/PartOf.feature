@@ -110,7 +110,7 @@ Feature: "Part Of" Endpoint
     When I make a GET request to the "Part Of" endpoint for the phrase "steering wheel"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is a part of the following
+    And the phrase is a part of the following
       | steering mechanism |
       | steering system    |
 
@@ -163,7 +163,7 @@ Feature: "Part Of" Endpoint
     When I make a GET request to the "Part Of" endpoint for the phrase "terra firma"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word is a part of the following
+    And the phrase is a part of the following
       | globe |
       | earth |
       | world |

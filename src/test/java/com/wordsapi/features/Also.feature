@@ -72,7 +72,7 @@ Feature: "Also" Endpoint
     When I make a GET request to the "Also" endpoint for the phrase "dress up"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following "also" values
+    And the phrase has the following "also" values
       | dress |
 
   Scenario: Hyphenated words
@@ -111,7 +111,7 @@ Feature: "Also" Endpoint
     When I make a GET request to the "Also" endpoint for the phrase "a posteriori"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following "also" values
+    And the phrase has the following "also" values
       | inductive   |
       | synthetic   |
       | synthetical |

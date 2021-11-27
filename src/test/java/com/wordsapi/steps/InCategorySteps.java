@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class InCategorySteps {
     private static final String FIELD = "inCategory";
 
-    @Then("the word is in the following categories")
+    @Then("^the (?:word|phrase) is in the following categories$")
     public void verifyCategoriesAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

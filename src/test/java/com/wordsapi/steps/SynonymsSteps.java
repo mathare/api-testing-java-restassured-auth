@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class SynonymsSteps {
     private static final String FIELD = "synonyms";
 
-    @Then("the word has the following synonyms")
+    @Then("^the (?:word|phrase) has the following synonyms$")
     public void verifySynonymsAgainstDataTable(DataTable dataTable) {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }

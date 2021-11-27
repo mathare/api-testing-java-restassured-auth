@@ -84,7 +84,7 @@ Feature: "Has Categories" Endpoint
     When I make a GET request to the "Has Categories" endpoint for the phrase "auction sale"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following categories
+    And the phrase has the following categories
       | underbid    |
       | upset price |
       | bid         |
@@ -144,7 +144,7 @@ Feature: "Has Categories" Endpoint
     When I make a GET request to the "Has Categories" endpoint for the phrase "jus civile"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has the following categories
+    And the phrase has the following categories
       | addiction |
       | novate    |
       | stipulate |
