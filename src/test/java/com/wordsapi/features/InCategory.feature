@@ -32,11 +32,11 @@ Feature: "In Category" Endpoint
     And the response body follows the expected JSON schema
     And the word is in 6 categories
 
-  Scenario: Word has no categories
+  Scenario: Word is in no categories
     When I make a GET request to the "In Category" endpoint for the word "green"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no categories
+    And the word is in no categories
 
   Scenario: Valid single letter word
     When I make a GET request to the "In Category" endpoint for the word "a"
@@ -49,31 +49,31 @@ Feature: "In Category" Endpoint
     When I make a GET request to the "In Category" endpoint for the word "m"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no categories
+    And the word is in no categories
 
   Scenario: Numbers have no categories
     When I make a GET request to the "In Category" endpoint for the word "11"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no categories
+    And the word is in no categories
 
   Scenario: Ordinal numbers have no categories
     When I make a GET request to the "In Category" endpoint for the word "11th"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no categories
+    And the word is in no categories
 
   Scenario: Numbers as words have no categories
     When I make a GET request to the "In Category" endpoint for the word "seven"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no categories
+    And the word is in no categories
 
   Scenario: Ordinal numbers as words have no categories
     When I make a GET request to the "In Category" endpoint for the word "seventh"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no categories
+    And the word is in no categories
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "In Category" endpoint for the phrase "nuclear reactor"
@@ -125,7 +125,7 @@ Feature: "In Category" Endpoint
     When I make a GET request to the "In Category" endpoint for the word "disney"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
-    And the word has no categories
+    And the word is in no categories
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "In Category" endpoint for the phrase "non sequitur"

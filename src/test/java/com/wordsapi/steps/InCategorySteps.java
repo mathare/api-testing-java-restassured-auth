@@ -16,7 +16,7 @@ public class InCategorySteps {
         assertThat(JsonPath.from(response.asString()).get(FIELD), equalTo(dataTable.asList()));
     }
 
-    @Then("the word has no categories")
+    @Then("the word is in no categories")
     public void verifyCategoriesArrayEmpty() {
         assertThat(JsonPath.from(response.asString()).get(FIELD), empty());
     }
