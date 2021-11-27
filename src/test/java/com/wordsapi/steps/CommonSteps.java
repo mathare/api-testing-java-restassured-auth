@@ -29,7 +29,7 @@ public class CommonSteps {
     private static final List<String> ENDPOINTS = Arrays.asList("Also", "Antonyms", "Definitions", "Everything", "Examples",
             "Frequency", "Has Categories", "Has Instances", "Has Members", "Has Parts", "Has Substances", "Has Types",
             "Has Usages", "In Category", "In Region", "Instance Of", "Member Of", "Part Of", "Pertains To", "Region Of",
-            "Rhymes", "Substance Of", "Synonyms", "Type Of", "Usage Of");
+            "Rhymes", "Similar To", "Substance Of", "Synonyms", "Type Of", "Usage Of");
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     static Response response;
     static List<Response> responses;
