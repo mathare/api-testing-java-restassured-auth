@@ -76,7 +76,7 @@ Feature: "Rhymes" Endpoint
     And the response body follows the expected JSON schema
     And the word has no rhymes
 
-  Scenario: Ordinal numbers have no numbers
+  Scenario: Ordinal numbers have no rhymes
     When I make a GET request to the "Rhymes" endpoint for the word "3rd"
     Then the response has a status code of 200
     And the response body follows the expected JSON schema
