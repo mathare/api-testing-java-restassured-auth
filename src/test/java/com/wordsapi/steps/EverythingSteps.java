@@ -67,16 +67,6 @@ public class EverythingSteps {
         assertThat(json.get("rhymes.all"), equalTo(rhyme));
     }
 
-    @Then("the word has {int} syllables")
-    public void verifyNumSyllables(int numSyllables) {
-        assertThat(json.get("syllables.count"), equalTo(numSyllables));
-    }
-
-    @Then("the word has the following syllables")
-    public void verifySyllables(DataTable dataTable) {
-        assertThat(json.get("syllables.list"), equalTo(dataTable.asList()));
-    }
-
     @Then("the word has a frequency of {float}")
     public void verifyFrequency(float frequency) {
         assertThat(json.get("frequency"), equalTo(frequency));

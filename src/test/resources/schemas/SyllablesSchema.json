@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "syllables": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "list": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "word",
+    "syllables"
+  ]
+}

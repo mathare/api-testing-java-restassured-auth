@@ -1,5 +1,6 @@
 package com.wordsapi.steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,7 +30,7 @@ public class CommonSteps {
     private static final List<String> ENDPOINTS = Arrays.asList("Also", "Antonyms", "Definitions", "Entails", "Everything",
             "Examples", "Frequency", "Has Categories", "Has Instances", "Has Members", "Has Parts", "Has Substances",
             "Has Types", "Has Usages", "In Category", "In Region", "Instance Of", "Member Of", "Part Of", "Pertains To",
-            "Pronunciation", "Region Of", "Rhymes", "Similar To", "Substance Of", "Synonyms", "Type Of", "Usage Of");
+            "Pronunciation", "Region Of", "Rhymes", "Similar To", "Substance Of", "Syllables", "Synonyms", "Type Of", "Usage Of");
     private static final List<String> PARTS_OF_SPEECH = Arrays.asList("adjective", "adverb", "noun", "preposition", "pronoun", "verb");
     static Response response;
     static List<Response> responses;
@@ -180,6 +181,16 @@ public class CommonSteps {
         for (String key : pronunciations.keySet()) {
             assertThat(JsonPath.from(response.asString()).get("pronunciation." + key), equalTo(pronunciations.get(key)));
         }
+    }
+
+    @Then("^the (?:word|phrase) has (\\d+) syllables?$")
+    public static void verifyNumSyllables(int numSyllables) {
+        assertThat(JsonPath.from(response.asString()).get("syllables.count"), equalTo(numSyllables));
+    }
+
+    @Then("the word has the following syllables")
+    public static void verifySyllables(DataTable dataTable) {
+        assertThat(JsonPath.from(response.asString()).get("syllables.list"), equalTo(dataTable.asList()));
     }
 
     private static String formatEndpoint(String endpoint) {
