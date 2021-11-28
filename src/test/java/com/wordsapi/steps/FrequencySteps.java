@@ -13,9 +13,6 @@ import static org.hamcrest.Matchers.nullValue;
 
 public class FrequencySteps {
     private static final String FIELD = "frequency";
-    private static final String ZIPF = FIELD + ".zipf";
-    private static final String PER_MILLION = FIELD + ".perMillion";
-    private static final String DIVERSITY = FIELD + ".diversity";
 
     @Then("the word has the following frequency values")
     public void verifyFrequencyValuesAgainstDataTable(DataTable dataTable) {
