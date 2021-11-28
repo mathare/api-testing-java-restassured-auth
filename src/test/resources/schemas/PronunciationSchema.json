@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "pronunciation": {
+      "type": [
+        "object",
+        "string"
+      ],
+      "properties": {
+        "all": {
+          "type": "string"
+        },
+        "adjective": {
+          "type": "string"
+        },
+        "noun": {
+          "type": "string"
+        },
+        "pronoun": {
+          "type": "string"
+        },
+        "verb": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "word",
+    "pronunciation"
+  ]
+}

@@ -77,19 +77,6 @@ public class EverythingSteps {
         assertThat(json.get("syllables.list"), equalTo(dataTable.asList()));
     }
 
-    @Then("the word is pronounced {string}")
-    public void verifyPronunciation(String pronunciation) {
-        assertThat(json.get("pronunciation.all"), equalTo(pronunciation));
-    }
-
-    @Then("the word has the following pronunciations")
-    public void verifyPronunciations(DataTable dataTable) {
-        Map<String, String> pronunciations = dataTable.asMap(String.class, String.class);
-        for (String key : pronunciations.keySet()) {
-            assertThat(json.get("pronunciation." + key), equalTo(pronunciations.get(key)));
-        }
-    }
-
     @Then("the word has a frequency of {float}")
     public void verifyFrequency(float frequency) {
         assertThat(json.get("frequency"), equalTo(frequency));
