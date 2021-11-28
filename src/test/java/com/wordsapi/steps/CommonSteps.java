@@ -163,6 +163,25 @@ public class CommonSteps {
         }
     }
 
+    @Then("^the (?:word|phrase) is pronounced \"(.*)\"$")
+    public static void verifyPronunciation(String pronunciation) {
+        JsonPath json = JsonPath.from(response.asString());
+        String field = "pronunciation";
+        //If pronunciation is an object, get the "all" value
+        if (!(json.get(field) instanceof String)) {
+            field = field + ".all";
+        }
+        assertThat(JsonPath.from(response.asString()).get(field), equalTo(pronunciation));
+    }
+
+    @Then("the word has the following pronunciations")
+    public static void verifyPronunciations(DataTable dataTable) {
+        Map<String, String> pronunciations = dataTable.asMap(String.class, String.class);
+        for (String key : pronunciations.keySet()) {
+            assertThat(JsonPath.from(response.asString()).get("pronunciation." + key), equalTo(pronunciations.get(key)));
+        }
+    }
+
     private static String formatEndpoint(String endpoint) {
         return endpoint.replaceAll(" ", "").toLowerCase();
     }
@@ -179,24 +198,5 @@ public class CommonSteps {
         word = word.substring(0, 1).toUpperCase() + word.substring(1);
         String filename = EXPECTED_RESPONSES_DIR + formatEndpoint(endpoint) + "/" + word + "Response.json";
         return JsonPath.from(new File(filename)).get();
-    }
-
-    @Then("^the (?:word|phrase) is pronounced \"(.*)\"$")
-    public void verifyPronunciation(String pronunciation) {
-        JsonPath json = JsonPath.from(response.asString());
-        String field = "pronunciation";
-        //If pronunciation is an object, get the "all" value
-        if (!(json.get(field) instanceof String)) {
-            field = field + ".all";
-        }
-        assertThat(JsonPath.from(response.asString()).get(field), equalTo(pronunciation));
-    }
-
-    @Then("the word has the following pronunciations")
-    public void verifyPronunciations(DataTable dataTable) {
-        Map<String, String> pronunciations = dataTable.asMap(String.class, String.class);
-        for (String key : pronunciations.keySet()) {
-            assertThat(JsonPath.from(response.asString()).get("pronunciation." + key), equalTo(pronunciations.get(key)));
-        }
     }
 }
