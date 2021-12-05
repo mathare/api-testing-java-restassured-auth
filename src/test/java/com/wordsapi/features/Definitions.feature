@@ -7,19 +7,19 @@ Feature: "Definitions" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Definitions" endpoint for the word "screen"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Definitions" endpoint for the word "handle"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word field in the response body is "handle"
 
   Scenario: Verify returned definitions against data table
     When I make a GET request to the "Definitions" endpoint for the word "cook"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                                                                                               | part of Speech |
       | tamper, with the purpose of deception                                                                                    | verb           |
@@ -33,13 +33,13 @@ Feature: "Definitions" Endpoint
   Scenario: Word has no definitions
     When I make a GET request to the "Definitions" endpoint for the word "ours"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has no definitions
 
   Scenario: Valid single letter word
     When I make a GET request to the "Definitions" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                                                                                                                                                                    | part of Speech |
       | used of a single unit or thing; not two or more                                                                                                                                               | adjective      |
@@ -50,7 +50,7 @@ Feature: "Definitions" Endpoint
   Scenario: Invalid single letter word
     When I make a GET request to the "Definitions" endpoint for the word "d"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                                      | part of Speech |
       | a fat-soluble vitamin that prevents rickets                     | noun           |
@@ -61,7 +61,7 @@ Feature: "Definitions" Endpoint
   Scenario: Get definition of number instead of word
     When I make a GET request to the "Definitions" endpoint for the word "5"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                          | part of Speech |
       | being one more than four                            | adjective      |
@@ -70,7 +70,7 @@ Feature: "Definitions" Endpoint
   Scenario Outline: Number of definitions for number - <number>
     When I make a GET request to the "Definitions" endpoint for the word "<number>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has 2 definitions
     And 1 of the definitions is an adjective
     And 1 of the definitions is a noun
@@ -84,7 +84,7 @@ Feature: "Definitions" Endpoint
   Scenario: Ordinal numbers have a single definition
     When I make a GET request to the "Definitions" endpoint for the word "3rd"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                                          | part of Speech |
       | coming next after the second and just before the fourth in position | adjective      |
@@ -92,7 +92,7 @@ Feature: "Definitions" Endpoint
   Scenario: Numbers as words
     When I make a GET request to the "Definitions" endpoint for the word "seven"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                                      | part of Speech |
       | the cardinal number that is the sum of six and one              | noun           |
@@ -102,7 +102,7 @@ Feature: "Definitions" Endpoint
   Scenario Outline: Definitions identical for number and word
     When I make a GET request to the "Definitions" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                              | part of Speech |
       | being one more than thirteen                            | adjective      |
@@ -135,7 +135,7 @@ Feature: "Definitions" Endpoint
   Scenario: Definitions of valid multi-word phrase
     When I make a GET request to the "Definitions" endpoint for the phrase "carving knife"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the phrase has the following definitions
       | definition                              | part of Speech |
       | a large knife used to carve cooked meat | noun           |
@@ -143,7 +143,7 @@ Feature: "Definitions" Endpoint
   Scenario: Hyphenated word definition
     When I make a GET request to the "Definitions" endpoint for the word "yo-yo"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                                                                | part of Speech |
       | a toy consisting of a spool that is reeled up and down on a string by motions of the hand | noun           |
@@ -151,7 +151,7 @@ Feature: "Definitions" Endpoint
   Scenario: Words containing apostrophes have no definitions
     When I make a GET request to the "Definitions" endpoint for the word "you're"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has no definitions
 
   Scenario: Word parameter is not case sensitive
@@ -163,7 +163,7 @@ Feature: "Definitions" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Definitions" endpoint for the word "lab"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                         | part of Speech |
       | a workplace for the conduct of scientific research | noun           |
@@ -171,7 +171,7 @@ Feature: "Definitions" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Definitions" endpoint for the word "GP"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the word has the following definitions
       | definition                                                   | part of Speech |
       | a physician who is not a specialist but treats all illnesses | noun           |
@@ -179,7 +179,7 @@ Feature: "Definitions" Endpoint
   Scenario: Popular brand name
     When I make a GET request to the "Definitions" endpoint for the word "google"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     Then the word has 2 definitions
     And 1 of the definitions is a noun
     And 1 of the definitions is a verb
@@ -187,7 +187,7 @@ Feature: "Definitions" Endpoint
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Definitions" endpoint for the phrase "deja vu"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Definitions" endpoint JSON schema
     And the phrase has the following definitions
       | definition                                                          | part of Speech |
       | the experience of thinking that a new situation had occurred before | noun           |

@@ -7,19 +7,19 @@ Feature: "Synonyms" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Synonyms" endpoint for the word "wild"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Synonyms" endpoint for the word "peerless"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word field in the response body is "peerless"
 
   Scenario: Verify returned synonyms against data table
     When I make a GET request to the "Synonyms" endpoint for the word "weather"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | brave                 |
       | brave out             |
@@ -32,13 +32,13 @@ Feature: "Synonyms" Endpoint
   Scenario: Word has no synonyms
     When I make a GET request to the "Synonyms" endpoint for the word "bison"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has no synonyms
 
   Scenario: Valid single letter word
     When I make a GET request to the "Synonyms" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | 1                |
       | ane              |
@@ -53,7 +53,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Invalid single letter word
     When I make a GET request to the "Synonyms" endpoint for the word "p"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | atomic number 15 |
       | phosphorus       |
@@ -61,7 +61,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Get synonyms for number instead of word
     When I make a GET request to the "Synonyms" endpoint for the word "6"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | half-dozen    |
       | half dozen    |
@@ -79,7 +79,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Get synonyms of multi-digit number
     When I make a GET request to the "Synonyms" endpoint for the word "500"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | d            |
       | five hundred |
@@ -87,14 +87,14 @@ Feature: "Synonyms" Endpoint
   Scenario: Ordinal numbers have a single synonym
     When I make a GET request to the "Synonyms" endpoint for the word "7th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | seventh |
 
   Scenario: Synonyms for numbers as words
     When I make a GET request to the "Synonyms" endpoint for the word "ten"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | ten-spot |
       | 10       |
@@ -134,7 +134,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Synonyms" endpoint for the phrase "racing car"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the phrase has the following synonyms
       | race car |
       | racer    |
@@ -142,7 +142,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Synonyms" endpoint for the word "merry-go-round"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | carousel   |
       | carrousel  |
@@ -152,7 +152,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "Synonyms" endpoint for the word "you're"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has no synonyms
 
   Scenario: Word parameter is not case sensitive
@@ -164,7 +164,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Synonyms" endpoint for the word "bike"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | bicycle    |
       | cycle      |
@@ -175,7 +175,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Synonyms" endpoint for the word "RV"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the word has the following synonyms
       | r.v.                 |
       | recreational vehicle |
@@ -183,7 +183,7 @@ Feature: "Synonyms" Endpoint
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Synonyms" endpoint for the phrase "pro rata"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Synonyms" endpoint JSON schema
     And the phrase has the following synonyms
       | proportionately |
 

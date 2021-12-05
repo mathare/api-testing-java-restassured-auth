@@ -7,19 +7,19 @@ Feature: "Has Categories" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Has Categories" endpoint for the word "operation"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Has Categories" endpoint for the word "legend"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word field in the response body is "legend"
 
   Scenario: Verify returned categories against data table
     When I make a GET request to the "Has Categories" endpoint for the word "science"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has the following categories
       | theorizer    |
       | verify       |
@@ -35,55 +35,55 @@ Feature: "Has Categories" Endpoint
   Scenario: Verify number of categories
     When I make a GET request to the "Has Categories" endpoint for the word "religion"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has 88 categories
 
   Scenario: Word has no categories
     When I make a GET request to the "Has Categories" endpoint for the word "bookcase"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Valid single letter word
     When I make a GET request to the "Has Categories" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Has Categories" endpoint for the word "c"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Numbers have no categories
     When I make a GET request to the "Has Categories" endpoint for the word "1"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Ordinal numbers have no categories
     When I make a GET request to the "Has Categories" endpoint for the word "1st"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Numbers as words have no categories
     When I make a GET request to the "Has Categories" endpoint for the word "one"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Ordinal numbers as words have no categories
     When I make a GET request to the "Has Categories" endpoint for the word "first"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Has Categories" endpoint for the phrase "auction sale"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the phrase has the following categories
       | underbid    |
       | upset price |
@@ -97,13 +97,13 @@ Feature: "Has Categories" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Has Categories" endpoint for the word "law-breaking"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has 47 categories
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Has Categories" endpoint for the word "rock'n'roll"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has the following categories
       | backbeat |
 
@@ -116,7 +116,7 @@ Feature: "Has Categories" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Has Categories" endpoint for the word "pic"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has the following categories
       | tape        |
       | dub         |
@@ -131,19 +131,19 @@ Feature: "Has Categories" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Has Categories" endpoint for the word "TV"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has 19 categories
 
   Scenario: Popular brand name
     When I make a GET request to the "Has Categories" endpoint for the word "amazon"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the word has no categories
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Has Categories" endpoint for the phrase "jus civile"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasCategories" endpoint JSON schema
     And the phrase has the following categories
       | addiction |
       | novate    |

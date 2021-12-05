@@ -7,19 +7,19 @@ Feature: "Entails" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Entails" endpoint for the word "eat"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Entails" endpoint for the word "parachute"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word field in the response body is "parachute"
 
   Scenario: Verify returned values against data table
     When I make a GET request to the "Entails" endpoint for the word "fight"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word entails the following
       | compete |
       | vie     |
@@ -28,49 +28,49 @@ Feature: "Entails" Endpoint
   Scenario: Word doesn't entail anything
     When I make a GET request to the "Entails" endpoint for the word "blind"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Entails" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Entails" endpoint for the word "o"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Numbers don't entail anything
     When I make a GET request to the "Entails" endpoint for the word "3"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Ordinal numbers don't entail anything
     When I make a GET request to the "Entails" endpoint for the word "6th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Numbers as words don't entail anything
     When I make a GET request to the "Entails" endpoint for the word "eight"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Ordinal numbers as words don't entail anything
     When I make a GET request to the "Entails" endpoint for the word "fifth"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Entails" endpoint for the phrase "pull through"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the phrase entails the following
       | convalesce |
       | recover    |
@@ -79,7 +79,7 @@ Feature: "Entails" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Entails" endpoint for the word "freeze-dry"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word entails the following
       | desiccate |
       | dehydrate |
@@ -89,7 +89,7 @@ Feature: "Entails" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "Entails" endpoint for the phrase "make up one's mind"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the phrase entails the following
       | debate     |
       | deliberate |
@@ -103,25 +103,25 @@ Feature: "Entails" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Entails" endpoint for the word "kid"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Valid initialism
     When I make a GET request to the "Entails" endpoint for the word "ASAP"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Popular brand name
     When I make a GET request to the "Entails" endpoint for the word "toyota"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word doesn't entail anything
 
   Scenario: Valid foreign word used in English
     When I make a GET request to the "Entails" endpoint for the word "applique"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Entails" endpoint JSON schema
     And the word entails the following
       | tailor-make |
       | sew         |

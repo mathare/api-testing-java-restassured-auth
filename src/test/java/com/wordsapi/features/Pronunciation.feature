@@ -7,31 +7,31 @@ Feature: "Pronunciation" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Pronunciation" endpoint for the word "wind"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Pronunciation" endpoint for the word "giraffe"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word field in the response body is "giraffe"
 
   Scenario: Verify single pronunciation
     When I make a GET request to the "Pronunciation" endpoint for the word "regular"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "'rɛɡjələr"
 
   Scenario: Word has no pronunciation
     When I make a GET request to the "Pronunciation" endpoint for the word "demount"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word has no pronunciation specified
 
   Scenario: Different pronunciations for different forms of word
     When I make a GET request to the "Pronunciation" endpoint for the word "deliberate"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "dɪ'lɪbɜrət"
     And the adjective form of the word is pronounced "dɪ'lɪbərɪt"
     And the verb form of the word is pronounced "dɪ'lɪbə,reɪt"
@@ -39,7 +39,7 @@ Feature: "Pronunciation" Endpoint
   Scenario Outline: Silent letters at the start of words - <word>
     When I make a GET request to the "Pronunciation" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "<pronunciation>"
     Examples:
       | word      | pronunciation |
@@ -50,7 +50,7 @@ Feature: "Pronunciation" Endpoint
   Scenario Outline: Similar spellings can have different pronunciations - <word>
     When I make a GET request to the "Pronunciation" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "<pronunciation>"
     Examples:
       | word    | pronunciation |
@@ -63,7 +63,7 @@ Feature: "Pronunciation" Endpoint
   Scenario Outline: Pluralisation can lead to different pronunciation - <word>
     When I make a GET request to the "Pronunciation" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "<pronunciation>"
     Examples:
       | word  | pronunciation |
@@ -73,7 +73,7 @@ Feature: "Pronunciation" Endpoint
   Scenario Outline: Different words can have the same pronunciation - <word>
     When I make a GET request to the "Pronunciation" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "<pronunciation>"
     Examples:
       | word  | pronunciation |
@@ -84,13 +84,13 @@ Feature: "Pronunciation" Endpoint
   Scenario: Valid single letter word
     When I make a GET request to the "Pronunciation" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "eɪ"
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Pronunciation" endpoint for the word "j"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "dʒeɪ"
 
   Scenario: Numbers have no pronunciation
@@ -106,31 +106,31 @@ Feature: "Pronunciation" Endpoint
   Scenario: Numbers as words
     When I make a GET request to the "Pronunciation" endpoint for the word "forty"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "'fɔrti"
 
   Scenario: Ordinal numbers as words
     When I make a GET request to the "Pronunciation" endpoint for the word "third"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "θɜrd"
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Pronunciation" endpoint for the phrase "supernatural being"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the phrase is pronounced ",supər'næʧərəl_'biɪŋ"
 
   Scenario: Hyphenated words
     When I make a GET request to the "Pronunciation" endpoint for the word "hard-and-fast"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "'hɑrdən_'fæst"
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Pronunciation" endpoint for the word "haven't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "'hævʌnt"
 
   Scenario: Word parameter is not case sensitive
@@ -142,7 +142,7 @@ Feature: "Pronunciation" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Pronunciation" endpoint for the word "min"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "mɪn"
 
   Scenario: Valid initialism
@@ -153,13 +153,13 @@ Feature: "Pronunciation" Endpoint
   Scenario: Popular brand name
     When I make a GET request to the "Pronunciation" endpoint for the word "nike"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "'naɪki"
 
   Scenario: Valid foreign word used in English
     When I make a GET request to the "Pronunciation" endpoint for the word "doppelganger"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Pronunciation" endpoint JSON schema
     And the word is pronounced "'dɑpəl,ɡæŋər"
 
   Scenario: Unauthorised GET request - no API key header

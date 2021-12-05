@@ -7,19 +7,19 @@ I am using is as expected
   Scenario: Verify response schema and body
     When I make a GET request to the "Type Of" endpoint for the word "hatchback"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Type Of" endpoint for the word "container"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word field in the response body is "container"
 
   Scenario: Verify returned types against data table
     When I make a GET request to the "Type Of" endpoint for the word "bottle"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | containerful |
       | vessel       |
@@ -34,13 +34,13 @@ I am using is as expected
   Scenario: Word is not type of anything
     When I make a GET request to the "Type Of" endpoint for the word "unique"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is not a type of anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Type Of" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | nucleotide             |
       | base                   |
@@ -57,7 +57,7 @@ I am using is as expected
   Scenario: Invalid single letter word
     When I make a GET request to the "Type Of" endpoint for the word "q"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | alphabetic character   |
       | letter                 |
@@ -66,7 +66,7 @@ I am using is as expected
   Scenario: Get type of number instead of word
     When I make a GET request to the "Type Of" endpoint for the word "2"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | digit  |
       | figure |
@@ -74,20 +74,20 @@ I am using is as expected
   Scenario: Get type of multi-digit number
     When I make a GET request to the "Type Of" endpoint for the word "12"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | large integer |
 
   Scenario: Ordinal numbers are not a type of anything
     When I make a GET request to the "Type Of" endpoint for the word "1st"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is not a type of anything
 
   Scenario: Numbers as words
     When I make a GET request to the "Type Of" endpoint for the word "three"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | digit        |
       | figure       |
@@ -96,7 +96,7 @@ I am using is as expected
   Scenario Outline: Types identical for number and word
     When I make a GET request to the "Type Of" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | large integer |
     Examples:
@@ -135,14 +135,14 @@ I am using is as expected
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Type Of" endpoint for the phrase "vitamin D"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the phrase is an example of the following types
       | fat-soluble vitamin |
 
   Scenario: Hyphenated words
     When I make a GET request to the "Type Of" endpoint for the word "father-in-law"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | begetter        |
       | father          |
@@ -153,7 +153,7 @@ I am using is as expected
   Scenario: Words containing apostrophes
     When I make a GET request to the "Type Of" endpoint for the word "we've"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is not a type of anything
 
   Scenario: Word parameter is not case sensitive
@@ -165,7 +165,7 @@ I am using is as expected
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Type Of" endpoint for the word "flu"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | respiratory disorder |
       | respiratory illness  |
@@ -176,7 +176,7 @@ I am using is as expected
   Scenario: Valid initialism
     When I make a GET request to the "Type Of" endpoint for the word "NGO"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | organization |
       | organisation |
@@ -184,7 +184,7 @@ I am using is as expected
   Scenario: Popular brand name
     When I make a GET request to the "Type Of" endpoint for the word "google"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the word is an example of the following types
       | explore  |
       | research |
@@ -193,7 +193,7 @@ I am using is as expected
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Type Of" endpoint for the phrase "modus operandi"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "TypeOf" endpoint JSON schema
     And the phrase is an example of the following types
       | procedure |
       | process   |

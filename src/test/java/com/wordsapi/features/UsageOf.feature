@@ -7,19 +7,19 @@ Feature: "Usage Of" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Usage Of" endpoint for the word "baloney"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Usage Of" endpoint for the word "posh"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word field in the response body is "posh"
 
   Scenario: Verify returned values against data table
     When I make a GET request to the "Usage Of" endpoint for the word "juice"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is an example usage of the following
       | argot      |
       | cant       |
@@ -32,49 +32,49 @@ Feature: "Usage Of" Endpoint
   Scenario: Word is not example usage of anything
     When I make a GET request to the "Usage Of" endpoint for the word "monkey"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Usage Of" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Usage Of" endpoint for the word "p"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Numbers are not an example usage of anything
     When I make a GET request to the "Usage Of" endpoint for the word "25"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Ordinal numbers are not an example usage of anything
     When I make a GET request to the "Usage Of" endpoint for the word "10th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Numbers as words
     When I make a GET request to the "Usage Of" endpoint for the word "six"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Ordinal numbers as words
     When I make a GET request to the "Usage Of" endpoint for the word "eleventh"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Usage Of" endpoint for the phrase "home run"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the phrase is an example usage of the following
       | trope            |
       | figure of speech |
@@ -84,14 +84,14 @@ Feature: "Usage Of" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Usage Of" endpoint for the word "top-notch"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is an example usage of the following
       | colloquialism |
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Usage Of" endpoint for the word "shan't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is not an example usage of anything
 
   Scenario: Word parameter is not case sensitive
@@ -103,14 +103,14 @@ Feature: "Usage Of" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Usage Of" endpoint for the word "biz"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is an example usage of the following
       | colloquialism |
 
   Scenario: Valid initialism
     When I make a GET request to the "Usage Of" endpoint for the word "HQ"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is an example usage of the following
       | plural form |
       | plural      |
@@ -118,14 +118,14 @@ Feature: "Usage Of" Endpoint
   Scenario: Popular brand name
     When I make a GET request to the "Usage Of" endpoint for the word "ipod"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the word is an example usage of the following
       | trademark |
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Usage Of" endpoint for the phrase "fin de siecle"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "UsageOf" endpoint JSON schema
     And the phrase is an example usage of the following
       | french |
 

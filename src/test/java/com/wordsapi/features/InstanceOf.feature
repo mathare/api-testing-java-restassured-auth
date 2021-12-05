@@ -7,19 +7,19 @@ Feature: "Instance Of" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Instance Of" endpoint for the word "himalayas"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Instance Of" endpoint for the word "acre"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word field in the response body is "acre"
 
   Scenario: Verify returned instances against data table
     When I make a GET request to the "Instance Of" endpoint for the word "leonardo"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is an instance of the following
       | applied scientist |
       | architect         |
@@ -35,49 +35,49 @@ Feature: "Instance Of" Endpoint
   Scenario: Word is not instance of anything
     When I make a GET request to the "Instance Of" endpoint for the word "swiftly"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Instance Of" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Instance Of" endpoint for the word "u"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Numbers are not an instance of anything
     When I make a GET request to the "Instance Of" endpoint for the word "2"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Ordinal numbers are not an instance of anything
     When I make a GET request to the "Instance Of" endpoint for the word "3rd"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Numbers as words are not an instance of anything
     When I make a GET request to the "Instance Of" endpoint for the word "nine"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Ordinal numbers as words are not an instance of anything
     When I make a GET request to the "Instance Of" endpoint for the word "fourth"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Instance Of" endpoint for the phrase "middle ages"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the phrase is an instance of the following
       | historic period |
       | age             |
@@ -85,13 +85,13 @@ Feature: "Instance Of" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Instance Of" endpoint for the word "commander-in-chief"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Instance Of" endpoint for the word "hadn't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Word parameter is not case sensitive
@@ -103,20 +103,20 @@ Feature: "Instance Of" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Instance Of" endpoint for the word "misc"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is not an instance of anything
 
   Scenario: Valid initialism
     When I make a GET request to the "Instance Of" endpoint for the word "WTC"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is an instance of the following
       | skyscraper |
 
   Scenario: Popular brand name
     When I make a GET request to the "Instance Of" endpoint for the word "yahoo"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the word is an instance of the following
       | search engine        |
       | character            |
@@ -126,7 +126,7 @@ Feature: "Instance Of" Endpoint
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Instance Of" endpoint for the phrase "al dente"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InstanceOf" endpoint JSON schema
     And the phrase is not an instance of anything
 
   Scenario: Unauthorised GET request - no API key header

@@ -7,19 +7,19 @@ Feature: "In Region" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "In Region" endpoint for the word "plonk"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "In Region" endpoint for the word "freshman"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word field in the response body is "freshman"
 
   Scenario: Verify returned regions against data table
     When I make a GET request to the "In Region" endpoint for the word "anorak"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word is used in the following regions
       | britain                                              |
       | u.k.                                                 |
@@ -31,49 +31,49 @@ Feature: "In Region" Endpoint
   Scenario: Word has no regions
     When I make a GET request to the "In Region" endpoint for the word "porcupine"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Valid single letter word
     When I make a GET request to the "In Region" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Invalid single letter word
     When I make a GET request to the "In Region" endpoint for the word "n"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Get regions for number instead of word
     When I make a GET request to the "In Region" endpoint for the word "15"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Ordinal numbers have no regions
     When I make a GET request to the "In Region" endpoint for the word "7th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Numbers as words have no regions
     When I make a GET request to the "In Region" endpoint for the word "nine"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Ordinal numbers as words have no regions
     When I make a GET request to the "In Region" endpoint for the word "fourth"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "In Region" endpoint for the phrase "social security number"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the phrase is used in the following regions
       | usa                      |
       | america                  |
@@ -87,7 +87,7 @@ Feature: "In Region" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "In Region" endpoint for the word "go-slow"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word is used in the following regions
       | u.k.                                                 |
       | great britain                                        |
@@ -99,7 +99,7 @@ Feature: "In Region" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "In Region" endpoint for the word "shan't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Word parameter is not case sensitive
@@ -111,13 +111,13 @@ Feature: "In Region" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "In Region" endpoint for the word "guv"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Valid initialism
     When I make a GET request to the "In Region" endpoint for the word "MB"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word is used in the following regions
       | u.k.                                                 |
       | great britain                                        |
@@ -129,13 +129,13 @@ Feature: "In Region" Endpoint
   Scenario: Popular brand name
     When I make a GET request to the "In Region" endpoint for the word "coca-cola"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the word has no regions
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "In Region" endpoint for the phrase "don juan"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "InRegion" endpoint JSON schema
     And the phrase is used in the following regions
       | espana           |
       | kingdom of spain |

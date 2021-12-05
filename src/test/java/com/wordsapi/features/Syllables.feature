@@ -7,19 +7,19 @@ Feature: "Syllables" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Syllables" endpoint for the word "anthropomorphically"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Syllables" endpoint for the word "straddle"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word field in the response body is "straddle"
 
   Scenario: Verify returned syllables against data table
     When I make a GET request to the "Syllables" endpoint for the word "electroencephalographically"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has the following syllables
       | e     |
       | lec   |
@@ -36,56 +36,56 @@ Feature: "Syllables" Endpoint
   Scenario: Valid single letter word
     When I make a GET request to the "Syllables" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has no syllables
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Syllables" endpoint for the word "f"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has no syllables
 
   Scenario: Numbers have no syllables
     When I make a GET request to the "Syllables" endpoint for the word "10"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has no syllables
 
   Scenario: Ordinal numbers have no syllables
     When I make a GET request to the "Syllables" endpoint for the word "10th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has no syllables
 
   Scenario: Numbers as words
     When I make a GET request to the "Syllables" endpoint for the word "seventeen"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has 3 syllables
 
   Scenario: Ordinal numbers as words
     When I make a GET request to the "Syllables" endpoint for the word "first"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has 1 syllable
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Syllables" endpoint for the phrase "proportional representation"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the phrase has 8 syllables
 
   Scenario: Hyphenated words
     # I think this is wrong & the word has 5 syllables but the API response has 4
     When I make a GET request to the "Syllables" endpoint for the word "three-dimensional"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has 4 syllables
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Syllables" endpoint for the word "aren't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has 1 syllable
 
   Scenario: Word parameter is not case sensitive
@@ -97,19 +97,19 @@ Feature: "Syllables" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Syllables" endpoint for the word "misc"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has 1 syllable
 
   Scenario: Valid initialism
     When I make a GET request to the "Syllables" endpoint for the word "DJ"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has 2 syllables
 
   Scenario: Popular brand name
     When I make a GET request to the "Syllables" endpoint for the word "chanel"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has the following syllables
       | Cha |
       | nel |
@@ -117,7 +117,7 @@ Feature: "Syllables" Endpoint
   Scenario: Valid foreign word used in English
     When I make a GET request to the "Syllables" endpoint for the word "blitzkrieg"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Syllables" endpoint JSON schema
     And the word has 2 syllables
 
   Scenario: Unauthorised GET request - no API key header

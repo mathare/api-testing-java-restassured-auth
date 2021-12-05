@@ -6,19 +6,19 @@ Feature: "Antonyms" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Antonyms" endpoint for the word "present"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Antonyms" endpoint for the word "industrial"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word field in the response body is "industrial"
 
   Scenario: Verify returned antonyms against data table
     When I make a GET request to the "Antonyms" endpoint for the word "brave"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has the following antonyms
       | cowardly |
       | timid    |
@@ -26,13 +26,13 @@ Feature: "Antonyms" Endpoint
   Scenario: Word has no antonyms
     When I make a GET request to the "Antonyms" endpoint for the word "drape"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has no antonyms
 
   Scenario: Valid single letter word
     When I make a GET request to the "Antonyms" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has no antonyms
 
   # As valid single letter words have no antonyms, there are no test cases for invalid single letter words - there's no point
@@ -40,7 +40,7 @@ Feature: "Antonyms" Endpoint
   Scenario: Get antonyms for number instead of word
     When I make a GET request to the "Antonyms" endpoint for the word "1"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has no antonyms
 
   # The previous test cases shows numbers have no antonyms so there are no further test cases for numbers here.
@@ -49,7 +49,7 @@ Feature: "Antonyms" Endpoint
   Scenario: No antonyms for ordinal numbers
     When I make a GET request to the "Antonyms" endpoint for the word "2nd"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has no antonyms
 
   Scenario: Ordinal numbers and words can have different antonyms
@@ -63,14 +63,14 @@ Feature: "Antonyms" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Antonyms" endpoint for the phrase "direct current"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the phrase has the following antonyms
       | alternating current |
 
   Scenario: Hyphenated words
     When I make a GET request to the "Antonyms" endpoint for the word "full-time"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has the following antonyms
       | part-time |
       | half-time |
@@ -78,7 +78,7 @@ Feature: "Antonyms" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "Antonyms" endpoint for the word "can't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has no antonyms
 
   Scenario: Word parameter is not case sensitive
@@ -90,7 +90,7 @@ Feature: "Antonyms" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Antonyms" endpoint for the word "pro"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has the following antonyms
       | con  |
       | anti |
@@ -98,13 +98,13 @@ Feature: "Antonyms" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Antonyms" endpoint for the word "MD"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the word has no antonyms
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Antonyms" endpoint for the phrase "a la carte"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Antonyms" endpoint JSON schema
     And the phrase has the following antonyms
       | table d'hote |
 

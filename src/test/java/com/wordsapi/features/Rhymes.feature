@@ -7,19 +7,19 @@ Feature: "Rhymes" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Rhymes" endpoint for the word "truck"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Rhymes" endpoint for the word "dog"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word field in the response body is "dog"
 
   Scenario: Verify returned rhymes against data table
     When I make a GET request to the "Rhymes" endpoint for the word "lamp"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has the following rhymes
       | abamp        |
       | afterdamp    |
@@ -48,44 +48,44 @@ Feature: "Rhymes" Endpoint
   Scenario: Word has no rhymes
     When I make a GET request to the "Rhymes" endpoint for the word "overcomplicate"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has no rhymes
 
   Scenario: Different rhymes for verb & noun forms of word
     When I make a GET request to the "Rhymes" endpoint for the word "house"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the noun form of the word has 78 rhymes
     And the verb form of the word has 8 rhymes
 
   Scenario: Valid single letter word
     When I make a GET request to the "Rhymes" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has 345 rhymes
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Rhymes" endpoint for the word "f"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has 12 rhymes
 
   Scenario: Numbers have no rhymes
     When I make a GET request to the "Rhymes" endpoint for the word "9"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has no rhymes
 
   Scenario: Ordinal numbers have no rhymes
     When I make a GET request to the "Rhymes" endpoint for the word "3rd"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has no rhymes
 
   Scenario: Numbers as words
     When I make a GET request to the "Rhymes" endpoint for the word "five"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has 35 rhymes
 
   Scenario: Equivalent numbers & words have different rhymes
@@ -103,19 +103,19 @@ Feature: "Rhymes" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Rhymes" endpoint for the phrase "burning ember"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the phrase has 22 rhymes
 
   Scenario: Hyphenated words
     When I make a GET request to the "Rhymes" endpoint for the word "long-lasting"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has 22 rhymes
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Rhymes" endpoint for the word "should've"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has no rhymes
 
   Scenario: Word parameter is not case sensitive
@@ -127,25 +127,25 @@ Feature: "Rhymes" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Rhymes" endpoint for the word "max"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has 28 rhymes
 
   Scenario: Valid initialism
     When I make a GET request to the "Rhymes" endpoint for the word "TV"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has 416 rhymes
 
   Scenario: Popular brand name
     When I make a GET request to the "Rhymes" endpoint for the word "microsoft"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the word has no rhymes
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Rhymes" endpoint for the phrase "compos mentis"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Rhymes" endpoint JSON schema
     And the phrase has 5 rhymes
 
   Scenario: Unauthorised GET request - no API key header

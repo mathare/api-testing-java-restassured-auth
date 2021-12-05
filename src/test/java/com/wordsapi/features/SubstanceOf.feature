@@ -7,19 +7,19 @@ Feature: "Substance Of" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Substance Of" endpoint for the word "aniseed"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Substance Of" endpoint for the word "flour"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word field in the response body is "flour"
 
   Scenario: Verify returned values against data table
     When I make a GET request to the "Substance Of" endpoint for the word "rum"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is a substance of the following
       | planter's punch |
       | daiquiri        |
@@ -34,13 +34,13 @@ Feature: "Substance Of" Endpoint
   Scenario: Word is not substance of anything
     When I make a GET request to the "Substance Of" endpoint for the word "quickly"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is not a substance of anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Substance Of" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is a substance of the following
       | saltwater |
       | brine     |
@@ -49,7 +49,7 @@ Feature: "Substance Of" Endpoint
   Scenario: Invalid single letter word
     When I make a GET request to the "Substance Of" endpoint for the word "g"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is a substance of the following
       | deoxyribonucleic acid  |
       | desoxyribonucleic acid |
@@ -60,31 +60,31 @@ Feature: "Substance Of" Endpoint
   Scenario: Numbers are not a substance of anything
     When I make a GET request to the "Substance Of" endpoint for the word "1"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is not a substance of anything
 
   Scenario: Ordinal numbers are not a substance of anything
     When I make a GET request to the "Substance Of" endpoint for the word "1st"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is not a substance of anything
 
   Scenario: Numbers as words are not a substance of anything
     When I make a GET request to the "Substance Of" endpoint for the word "five"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is not a substance of anything
 
   Scenario: Ordinal umbers as words are not a substance of anything
     When I make a GET request to the "Substance Of" endpoint for the word "fifth"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is not a substance of anything
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Substance Of" endpoint for the phrase "potassium nitrate"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the phrase is a substance of the following
       | fertiliser |
       | fertilizer |
@@ -93,13 +93,13 @@ Feature: "Substance Of" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Substance Of" endpoint for the word "lipo-lutin"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is a substance of 7 things
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Substance Of" endpoint for the word "couldn't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is not a substance of anything
 
   Scenario: Word parameter is not case sensitive
@@ -111,20 +111,20 @@ Feature: "Substance Of" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Substance Of" endpoint for the word "h2o"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is a substance of 18 things
 
   Scenario: Valid initialism
     When I make a GET request to the "Substance Of" endpoint for the word "EU"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is a substance of the following
       | monazite |
 
   Scenario: Popular brand name
     When I make a GET request to the "Substance Of" endpoint for the word "saran"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the word is a substance of the following
       | cling film |
       | clingfilm  |
@@ -133,7 +133,7 @@ Feature: "Substance Of" Endpoint
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Substance Of" endpoint for the phrase "dura mater"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SubstanceOf" endpoint JSON schema
     And the phrase is a substance of the following
       | tentorium |
 

@@ -7,19 +7,19 @@ Feature: "Has Members" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Has Members" endpoint for the word "train"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Has Members" endpoint for the word "family"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word field in the response body is "family"
 
   Scenario: Verify returned members against data table
     When I make a GET request to the "Has Members" endpoint for the word "people"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has the following members
       | citizen    |
       | mortal     |
@@ -32,62 +32,62 @@ Feature: "Has Members" Endpoint
   Scenario: Word has no members
     When I make a GET request to the "Has Members" endpoint for the word "superlative"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Valid single letter word
     When I make a GET request to the "Has Members" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Has Members" endpoint for the word "h"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Numbers have no members
     When I make a GET request to the "Has Members" endpoint for the word "1"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Ordinal numbers have no members
     When I make a GET request to the "Has Members" endpoint for the word "5th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Numbers as words have no members
     When I make a GET request to the "Has Members" endpoint for the word "one"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Ordinal numbers as words have no members
     When I make a GET request to the "Has Members" endpoint for the word "fifth"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Has Members" endpoint for the phrase "cactus family"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the phrase has 53 members
 
   Scenario: Hyphenated words
     When I make a GET request to the "Has Members" endpoint for the word "kwazulu-natal"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has the following members
       | zulu |
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Has Members" endpoint for the word "won't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has no members
 
   Scenario: Word parameter is not case sensitive
@@ -99,7 +99,7 @@ Feature: "Has Members" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Has Members" endpoint for the word "fed"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has the following members
       | reserve bank         |
       | federal reserve bank |
@@ -109,13 +109,13 @@ Feature: "Has Members" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Has Members" endpoint for the word "EU"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the word has 50 members
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Has Members" endpoint for the phrase "genus falco"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasMembers" endpoint JSON schema
     And the phrase has the following members
       | falco columbarius |
       | falco peregrinus  |

@@ -7,19 +7,19 @@ Feature: "Similar To" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Similar To" endpoint for the word "rough"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Similar To" endpoint for the word "unstoppable"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word field in the response body is "unstoppable"
 
   Scenario: Verify returned values against data table
     When I make a GET request to the "Similar To" endpoint for the word "warm"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | excitable     |
       | enthusiastic  |
@@ -40,40 +40,40 @@ Feature: "Similar To" Endpoint
   Scenario: Word isn't similar to anything
     When I make a GET request to the "Similar To" endpoint for the word "artichoke"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word isn't similar to anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Similar To" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | cardinal |
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Similar To" endpoint for the word "s"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word isn't similar to anything
 
   Scenario: Number instead of word
     When I make a GET request to the "Similar To" endpoint for the word "0"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | cardinal |
 
   Scenario: Ordinal numbers
     When I make a GET request to the "Similar To" endpoint for the word "1st"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | ordinal |
 
   Scenario: Numbers as words
     When I make a GET request to the "Similar To" endpoint for the word "zero"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | cardinal |
       | no       |
@@ -82,7 +82,7 @@ Feature: "Similar To" Endpoint
   Scenario Outline: Ordinal numbers as words
     When I make a GET request to the "Similar To" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to <num> things
     Examples:
       | word  | num |
@@ -92,14 +92,14 @@ Feature: "Similar To" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Similar To" endpoint for the phrase "out of the blue"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the phrase is similar to the following
       | unexpected |
 
   Scenario: Hyphenated words
     When I make a GET request to the "Similar To" endpoint for the word "never-ending"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | continuous    |
       | uninterrupted |
@@ -107,7 +107,7 @@ Feature: "Similar To" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "Similar To" endpoint for the phrase "on one's guard"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the phrase is similar to the following
       | wary |
 
@@ -120,26 +120,26 @@ Feature: "Similar To" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Similar To" endpoint for the word "jr."
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | junior |
 
   Scenario: Valid initialism
     When I make a GET request to the "Similar To" endpoint for the word "UFO"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word isn't similar to anything
 
   Scenario: Popular brand name
     When I make a GET request to the "Similar To" endpoint for the word "mercedes"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word isn't similar to anything
 
   Scenario: Valid foreign word used in English
     When I make a GET request to the "Similar To" endpoint for the word "nee"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "SimilarTo" endpoint JSON schema
     And the word is similar to the following
       | heritable   |
       | inheritable |

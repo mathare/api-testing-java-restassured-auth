@@ -7,19 +7,19 @@ Feature: "Has Substances" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Has Substances" endpoint for the word "brine"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Has Substances" endpoint for the word "bread"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word field in the response body is "bread"
 
   Scenario: Verify returned substances against data table
     When I make a GET request to the "Has Substances" endpoint for the word "manhattan"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has the following substances
       | italian vermouth |
       | whisky           |
@@ -29,49 +29,49 @@ Feature: "Has Substances" Endpoint
   Scenario: Word has no substances
     When I make a GET request to the "Has Substances" endpoint for the word "party"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Valid single letter word
     When I make a GET request to the "Has Substances" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Has Substances" endpoint for the word "b"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Numbers have no substances
     When I make a GET request to the "Has Substances" endpoint for the word "2"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Ordinal numbers have no substances
     When I make a GET request to the "Has Substances" endpoint for the word "2nd"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Numbers as words have no substances
     When I make a GET request to the "Has Substances" endpoint for the word "one"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Ordinal numbers as words have no substances
     When I make a GET request to the "Has Substances" endpoint for the word "first"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Has Substances" endpoint for the phrase "weed killer"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the phrase has the following substances
       | atomic number 33 |
       | arsenic          |
@@ -80,14 +80,14 @@ Feature: "Has Substances" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Has Substances" endpoint for the word "a-horizon"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has the following substances
       | humus |
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Has Substances" endpoint for the word "shouldn't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has no substances
 
   Scenario: Word parameter is not case sensitive
@@ -99,7 +99,7 @@ Feature: "Has Substances" Endpoint
   Scenario: Popular brand name
     When I make a GET request to the "Has Substances" endpoint for the phrase "tabasco sauce"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the phrase has the following substances
       | red pepper |
       | tabasco    |
@@ -107,7 +107,7 @@ Feature: "Has Substances" Endpoint
   Scenario: Valid foreign word used in English
     When I make a GET request to the "Has Substances" endpoint for the word "jalapeno"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasSubstances" endpoint JSON schema
     And the word has the following substances
       | cayenne pepper |
       | cayenne        |

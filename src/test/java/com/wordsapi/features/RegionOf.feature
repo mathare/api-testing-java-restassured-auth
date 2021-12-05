@@ -7,19 +7,19 @@ Feature: "Region Of" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Region Of" endpoint for the word "england"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Region Of" endpoint for the word "peru"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And the word field in the response body is "peru"
 
   Scenario: Verify returned regional words against data table
     When I make a GET request to the "Region Of" endpoint for the word "hawaii"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And the following words are used in this region
       | macadamia nut        |
       | macadamia ternifolia |
@@ -37,7 +37,7 @@ Feature: "Region Of" Endpoint
   Scenario: No regional words
     When I make a GET request to the "Region Of" endpoint for the word "london"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And no words are specific to this region
 
   # There are no scenarios for single letter words, numbers - as digits or words - and ordinal numbers because the
@@ -47,7 +47,7 @@ Feature: "Region Of" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Region Of" endpoint for the phrase "south africa"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And the following words are used in this region
       | qibla                                |
       | koppie                               |
@@ -67,7 +67,7 @@ Feature: "Region Of" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Region Of" endpoint for the word "dae-han-min-gook"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And the following words are used in this region
       | korean war         |
       | chino-japanese war |
@@ -76,7 +76,7 @@ Feature: "Region Of" Endpoint
   Scenario: Words containing punctuation
     When I make a GET request to the "Region Of" endpoint for the word "u.s."
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And 120 words are specific to this region
 
   Scenario: Word parameter is not case sensitive
@@ -88,7 +88,7 @@ Feature: "Region Of" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Region Of" endpoint for the word "UK"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "RegionOf" endpoint JSON schema
     And 675 words are specific to this region
 
   Scenario: Unauthorised GET request - no API key header

@@ -7,19 +7,19 @@ Feature: "Has Parts" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Has Parts" endpoint for the word "body"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Has Parts" endpoint for the word "letter"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word field in the response body is "letter"
 
   Scenario: Verify returned parts against data table
     When I make a GET request to the "Has Parts" endpoint for the word "movie"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has the following parts
       | subtitle |
       | shot     |
@@ -33,19 +33,19 @@ Feature: "Has Parts" Endpoint
   Scenario: Verify number of parts
     When I make a GET request to the "Has Parts" endpoint for the word "play"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has 16 parts
 
   Scenario: Word has no parts
     When I make a GET request to the "Has Parts" endpoint for the word "astonishment"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Valid single letter word
     When I make a GET request to the "Has Parts" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has the following parts
       | milliampere |
       | ma          |
@@ -56,25 +56,25 @@ Feature: "Has Parts" Endpoint
   Scenario: Invalid single letter word
     When I make a GET request to the "Has Parts" endpoint for the word "r"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Numbers have no parts
     When I make a GET request to the "Has Parts" endpoint for the word "75"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Ordinal numbers have no parts
     When I make a GET request to the "Has Parts" endpoint for the word "6th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Numbers as words have no parts
     When I make a GET request to the "Has Parts" endpoint for the word "one"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Ordinal numbers and words have different parts
@@ -88,13 +88,13 @@ Feature: "Has Parts" Endpoint
   Scenario: Not all ordinal numbers as words have parts
     When I make a GET request to the "Has Parts" endpoint for the word "first"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Has Parts" endpoint for the phrase "sports stadium"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the phrase has the following parts
       | tiered seat    |
       | athletic field |
@@ -108,7 +108,7 @@ Feature: "Has Parts" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Has Parts" endpoint for the word "small-arm"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has the following parts
       | firing pin |
       | sights     |
@@ -117,7 +117,7 @@ Feature: "Has Parts" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "Has Parts" endpoint for the word "wouldn't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Word parameter is not case sensitive
@@ -129,7 +129,7 @@ Feature: "Has Parts" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Has Parts" endpoint for the word "min"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has the following parts
       | s      |
       | sec    |
@@ -138,7 +138,7 @@ Feature: "Has Parts" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Has Parts" endpoint for the word "MB"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has the following parts
       | kb       |
       | k        |
@@ -151,7 +151,7 @@ Feature: "Has Parts" Endpoint
   Scenario: Valid foreign word used in English
     When I make a GET request to the "Has Parts" endpoint for the word "tete-a-tete"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasParts" endpoint JSON schema
     And the word has no parts
 
   Scenario: Unauthorised GET request - no API key header

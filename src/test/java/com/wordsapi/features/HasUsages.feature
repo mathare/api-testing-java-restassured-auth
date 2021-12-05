@@ -7,19 +7,19 @@ Feature: "Has Usages" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Has Usages" endpoint for the word "acronym"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Has Usages" endpoint for the word "intensifier"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the word field in the response body is "intensifier"
 
   Scenario: Verify returned usages against data table
     When I make a GET request to the "Has Usages" endpoint for the word "synecdoche"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the word has the following usages
       | fireside |
       | face     |
@@ -28,25 +28,25 @@ Feature: "Has Usages" Endpoint
   Scenario: Verify number of usages
     When I make a GET request to the "Has Usages" endpoint for the word "slang"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the word has 195 usages
 
   Scenario: Word has no usages
     When I make a GET request to the "Has Usages" endpoint for the word "cutlery"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the word has no usages
 
   Scenario: Valid single letter word
     When I make a GET request to the "Has Usages" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the word has no usages
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Has Usages" endpoint for the word "f"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the word has no usages
 
   # There are no tests of numbers - as digits or words - or ordinal numbers as the "Has Usages" endpoint only really
@@ -55,7 +55,7 @@ Feature: "Has Usages" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Has Usages" endpoint for the phrase "figure of speech"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the phrase has 21 usages
 
   Scenario: Word parameter is not case sensitive
@@ -67,7 +67,7 @@ Feature: "Has Usages" Endpoint
   Scenario: Valid foreign word used in English
     When I make a GET request to the "Has Usages" endpoint for the word "portmanteau"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasUsages" endpoint JSON schema
     And the word has the following usages
       | smogginess |
       | dandle     |

@@ -7,19 +7,19 @@ Feature: "Also" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Also" endpoint for the word "vulnerable"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Also" endpoint for the word "log"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word field in the response body is "log"
 
   Scenario: Verify returned values against data table
     When I make a GET request to the "Also" endpoint for the word "tolerant"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has the following "also" values
       | patient    |
       | charitable |
@@ -27,31 +27,31 @@ Feature: "Also" Endpoint
   Scenario: Verify number of returned values
     When I make a GET request to the "Also" endpoint for the word "inedible"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has 3 "also" values
 
   Scenario: Word has no "also" values
     When I make a GET request to the "Also" endpoint for the word "mouse"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
 
   Scenario: Valid single letter word
     When I make a GET request to the "Also" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Also" endpoint for the word "w"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
 
   Scenario Outline: Numbers have no "also" values
     When I make a GET request to the "Also" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
     Examples:
       | word  |
@@ -61,7 +61,7 @@ Feature: "Also" Endpoint
   Scenario Outline: Ordinal numbers have no "also" values
     When I make a GET request to the "Also" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
     Examples:
       | word   |
@@ -71,14 +71,14 @@ Feature: "Also" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Also" endpoint for the phrase "dress up"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the phrase has the following "also" values
       | dress |
 
   Scenario: Hyphenated words
     When I make a GET request to the "Also" endpoint for the word "right-handed"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has the following "also" values
       | dextral |
       | right   |
@@ -86,7 +86,7 @@ Feature: "Also" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "Also" endpoint for the word "wouldn't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
 
   Scenario: Word parameter is not case sensitive
@@ -98,19 +98,19 @@ Feature: "Also" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Also" endpoint for the word "MD"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
 
   Scenario: Popular brand name
     When I make a GET request to the "Also" endpoint for the word "tesla"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the word has no "also" values
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Also" endpoint for the phrase "a posteriori"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Also" endpoint JSON schema
     And the phrase has the following "also" values
       | inductive   |
       | synthetic   |

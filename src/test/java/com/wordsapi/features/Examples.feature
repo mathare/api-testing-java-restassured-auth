@@ -7,19 +7,19 @@ Feature: "Examples" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Examples" endpoint for the word "table"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Examples" endpoint for the word "glass"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word field in the response body is "glass"
 
   Scenario: Verify returned examples against data table
     When I make a GET request to the "Examples" endpoint for the word "plate"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has the following examples
       | a vegetable plate        |
       | the blue plate special   |
@@ -28,45 +28,45 @@ Feature: "Examples" Endpoint
   Scenario: Word has no examples
     When I make a GET request to the "Examples" endpoint for the word "coaster"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has no examples
 
   Scenario: Valid single letter word
     When I make a GET request to the "Examples" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has the following examples
       | a typical household circuit carries 15 to 50 amps |
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Examples" endpoint for the word "y"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has no examples
 
   Scenario: Get examples of number instead of word
     When I make a GET request to the "Examples" endpoint for the word "7"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has no examples
 
   Scenario: Ordinal numbers have no examples
     When I make a GET request to the "Examples" endpoint for the word "1st"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has no examples
 
   Scenario: Numbers as words
     When I make a GET request to the "Examples" endpoint for the word "two"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has the following examples
       | he received two messages |
 
   Scenario: Not all numbers as words have examples
     When I make a GET request to the "Examples" endpoint for the word "three"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has no examples
 
   Scenario: Equivalent numbers & words have different examples
@@ -97,21 +97,21 @@ Feature: "Examples" Endpoint
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Examples" endpoint for the phrase "point of view"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the phrase has the following examples
       | teaching history gave him a special point of view toward current events |
 
   Scenario: Hyphenated words
     When I make a GET request to the "Examples" endpoint for the word "cookie-cutter"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has the following examples
       | a suburb of cookie-cutter houses |
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Examples" endpoint for the word "you're"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has no examples
 
   Scenario: Word parameter is not case sensitive
@@ -123,27 +123,27 @@ Feature: "Examples" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Examples" endpoint for the word "detox"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has the following examples
       | He was detoxified in the clinic |
 
   Scenario: Valid initialism
     When I make a GET request to the "Examples" endpoint for the word "PC"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has no examples
 
   Scenario: Popular brand name
     When I make a GET request to the "Examples" endpoint for the word "google"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the word has the following examples
       | He googled the woman he had met at the party |
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Examples" endpoint for the phrase "a priori"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Examples" endpoint JSON schema
     And the phrase has the following examples
       | an a priori judgment |
 

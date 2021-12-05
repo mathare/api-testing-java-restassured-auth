@@ -7,19 +7,19 @@ Feature: "Part Of" Endpoint
   Scenario: Verify response schema and body
     When I make a GET request to the "Part Of" endpoint for the word "finger"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Part Of" endpoint for the word "foyer"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word field in the response body is "foyer"
 
   Scenario: Verify returned parts against data table
     When I make a GET request to the "Part Of" endpoint for the word "lid"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is a part of the following
       | oculus |
       | eye    |
@@ -31,19 +31,19 @@ Feature: "Part Of" Endpoint
   Scenario: Verify number of returned parts
     When I make a GET request to the "Part Of" endpoint for the word "handle"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is a part of 43 things
 
   Scenario: Word is not part of anything
     When I make a GET request to the "Part Of" endpoint for the word "yellow"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario: Valid single letter word
     When I make a GET request to the "Part Of" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is a part of the following
       | abamp           |
       | abampere        |
@@ -57,31 +57,31 @@ Feature: "Part Of" Endpoint
   Scenario: Invalid single letter word
     When I make a GET request to the "Part Of" endpoint for the word "h"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario: Numbers are not a part of anything
     When I make a GET request to the "Part Of" endpoint for the word "50"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario: Ordinal numbers are not a part of anything
     When I make a GET request to the "Part Of" endpoint for the word "9th"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario: Numbers as words
     When I make a GET request to the "Part Of" endpoint for the word "one"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario Outline: Equivalent number and word not part of anything
     When I make a GET request to the "Part Of" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
     Examples:
       | word   |
@@ -103,13 +103,13 @@ Feature: "Part Of" Endpoint
   Scenario: Not all ordinal numbers as words are part of anything
     When I make a GET request to the "Part Of" endpoint for the word "fourth"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Part Of" endpoint for the phrase "steering wheel"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the phrase is a part of the following
       | steering mechanism |
       | steering system    |
@@ -117,7 +117,7 @@ Feature: "Part Of" Endpoint
   Scenario: Hyphenated words
     When I make a GET request to the "Part Of" endpoint for the word "splash-guard"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is a part of the following
       | bike       |
       | cycle      |
@@ -128,7 +128,7 @@ Feature: "Part Of" Endpoint
   Scenario: Words containing apostrophes
     When I make a GET request to the "Part Of" endpoint for the word "won't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario: Word parameter is not case sensitive
@@ -140,7 +140,7 @@ Feature: "Part Of" Endpoint
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Part Of" endpoint for the word "yr"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is a part of the following
       | decade    |
       | decennium |
@@ -149,20 +149,20 @@ Feature: "Part Of" Endpoint
   Scenario: Valid initialism
     When I make a GET request to the "Part Of" endpoint for the word "UK"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is a part of the following
       | british isles |
 
   Scenario: Popular brand name
     When I make a GET request to the "Part Of" endpoint for the word "pepsi"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the word is not a part of anything
 
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Part Of" endpoint for the phrase "terra firma"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "PartOf" endpoint JSON schema
     And the phrase is a part of the following
       | globe |
       | earth |

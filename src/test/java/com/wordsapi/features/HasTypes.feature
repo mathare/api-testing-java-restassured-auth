@@ -7,19 +7,19 @@ I am using is as expected
   Scenario: Verify response schema and body
     When I make a GET request to the "Has Types" endpoint for the word "vehicle"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario: Verify "word" field in response is requested word
     When I make a GET request to the "Has Types" endpoint for the word "furniture"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word field in the response body is "furniture"
 
   Scenario: Verify returned types against data table
     When I make a GET request to the "Has Types" endpoint for the word "shelf"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has the following types
       | berm         |
       | mantelpiece  |
@@ -34,13 +34,13 @@ I am using is as expected
   Scenario: Word has no types
     When I make a GET request to the "Has Types" endpoint for the word "eaten"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has no types
 
   Scenario: Valid single letter word
     When I make a GET request to the "Has Types" endpoint for the word "i"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has the following types
       | iodine-125 |
       | iodine-131 |
@@ -51,13 +51,13 @@ I am using is as expected
   Scenario: Invalid single letter word
     When I make a GET request to the "Has Types" endpoint for the word "x"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has no types
 
   Scenario Outline: Get number of types for number - <number>
     When I make a GET request to the "Has Types" endpoint for the word "<number>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has <types> types
     Examples:
       | number | types |
@@ -82,7 +82,7 @@ I am using is as expected
   Scenario: Ordinal numbers have no types
     When I make a GET request to the "Has Types" endpoint for the word "2nd"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has no types
 
   Scenario: Ordinal numbers and words can have different types
@@ -102,7 +102,7 @@ I am using is as expected
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Has Types" endpoint for the phrase "record player"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the phrase has the following types
       | acoustic gramophone |
       | gramophone          |
@@ -112,7 +112,7 @@ I am using is as expected
   Scenario: Hyphenated words
     When I make a GET request to the "Has Types" endpoint for the word "relative-in-law"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has the following types
       | father-in-law   |
       | mother-in-law   |
@@ -124,7 +124,7 @@ I am using is as expected
   Scenario: Words containing apostrophes
     When I make a GET request to the "Has Types" endpoint for the word "can't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has no types
 
   Scenario: Word parameter is not case sensitive
@@ -136,7 +136,7 @@ I am using is as expected
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Has Types" endpoint for the word "pro"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has the following types
       | semipro          |
       | semiprofessional |
@@ -145,7 +145,7 @@ I am using is as expected
   Scenario: Valid initialism
     When I make a GET request to the "Has Types" endpoint for the word "TV"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the word has the following types
       | cable                      |
       | high-definition television |
@@ -155,7 +155,7 @@ I am using is as expected
   Scenario: Valid foreign phrase used in English
     When I make a GET request to the "Has Types" endpoint for the phrase "persona non grata"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "HasTypes" endpoint JSON schema
     And the phrase has 30 types
 
   Scenario: Unauthorised GET request - no API key header
