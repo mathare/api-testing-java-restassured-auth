@@ -145,7 +145,7 @@ public class CommonSteps {
 
     @Then("the response body follows the error JSON schema")
     public static void verifyResponseBodyAgainstJsonSchema() {
-        assertThat(response.asString(), matchesJsonSchema(getJsonSchema(endpoint)));
+        assertThat(response.asString(), matchesJsonSchema(getJsonSchema("Error")));
     }
 
     @Then("the response body matches the expected response")
