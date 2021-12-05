@@ -42,13 +42,14 @@ public class CommonSteps {
         RestAssured.baseURI = "https://wordsapiv1.p.rapidapi.com/words/";
         request = RestAssured.given();
         request.header("Content-Type", "application/json");
-        request.header("x-rapidapi-key", System.getProperty("API_KEY"));
         responses = new ArrayList<>();
     }
 
     @When("^I make a (GET|PATCH|POST|PUT|DELETE) request to the \"(.*)\" endpoint for the (?:word|phrase) \"(.*)\"$")
     public static void makeRequest(String requestType, String endpoint, String word) {
         if (ENDPOINTS.contains(endpoint)) {
+            request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
+            request.header("x-rapidapi-key", System.getProperty("API_KEY"));
             CommonSteps.endpoint = endpoint;
             CommonSteps.word = word;
             switch (requestType) {
@@ -76,7 +77,6 @@ public class CommonSteps {
 
     @When("^I make a GET request without an API key header to the \"(.*)\" endpoint for the word \"(.*)\"$")
     public static void makeUnauthorisedRequestNoAPIKeyHeader(String endpoint, String word) {
-        request = RestAssured.given();
         if (ENDPOINTS.contains(endpoint)) {
             response = request.get(buildRequestURI(word, endpoint));
             responses.add(response);
@@ -87,7 +87,6 @@ public class CommonSteps {
 
     @When("^I make a GET request with an invalid API key header to the \"(.*)\" endpoint for the word \"(.*)\"$")
     public static void makeUnauthorisedRequestInvalidAPIKeyHeader(String endpoint, String word) {
-        request = RestAssured.given();
         if (ENDPOINTS.contains(endpoint)) {
             request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
             request.header("invalid-api-key-header", System.getProperty("API_KEY"));
@@ -100,8 +99,8 @@ public class CommonSteps {
 
     @When("^I make a GET request with an invalid API key value to the \"(.*)\" endpoint for the word \"(.*)\"$")
     public static void makeUnauthorisedRequestInvalidAPIKeyValue(String endpoint, String word) {
-        request = RestAssured.given();
         if (ENDPOINTS.contains(endpoint)) {
+            request.config(RestAssuredConfig.config().headerConfig(headerConfig().overwriteHeadersWithName("x-rapidapi-key")));
             request.header("x-rapidapi-key", "1234567890");
             response = request.get(buildRequestURI(word, endpoint));
             responses.add(response);
