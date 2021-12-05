@@ -42,7 +42,7 @@ Feature: "Frequency" Endpoint
     And the word has a "diversity" frequency value of 0
 
   Scenario: Word has no frequency values
-    When I make a GET request to the "Type Of" endpoint for the word "parallelogram"
+    When I make a GET request to the "Frequency" endpoint for the word "parallelogram"
     Then the response has a status code of 200
     And the response body follows the "Frequency" endpoint JSON schema
     And the word has no frequency values
