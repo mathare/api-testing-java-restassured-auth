@@ -114,11 +114,14 @@ public class CommonSteps {
         assertThat(response.getStatusCode(), equalTo(code));
     }
 
-    @Then("^the response body follows the (expected|error) JSON schema$")
-    public static void verifyResponseBodyAgainstJsonSchema(String type) {
-        assertThat(response.asString(), type.equals("error") ?
-                matchesJsonSchema(getJsonSchema("Error")) :
-                matchesJsonSchema(getJsonSchema(endpoint)));
+    @Then("^the response body follows the \"(.*)\"(?: endpoint)? JSON schema$")
+    public static void verifyResponseBodyAgainstJsonSchema(String endpoint) {
+        assertThat(response.asString(), matchesJsonSchema(getJsonSchema(endpoint)));
+    }
+
+    @Then("the response body follows the error JSON schema")
+    public static void verifyResponseBodyAgainstJsonSchema() {
+        assertThat(response.asString(), matchesJsonSchema(getJsonSchema(endpoint)));
     }
 
     @Then("the response body matches the expected response")
