@@ -138,7 +138,7 @@ public class CommonSteps {
         assertThat(JsonPath.from(response.asString()).get("word"), equalTo(word));
     }
 
-    @Then("all response bodies are identical")
+    @Then("^(?:all|both) response bodies are identical$")
     public static void verifyAllResponsesIdentical() {
         for (int i = 1; i < responses.size(); i++) {
             assertThat(responses.get(i).asString(), equalTo(responses.get(0).asString()));
