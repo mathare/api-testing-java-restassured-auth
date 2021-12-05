@@ -1,26 +1,26 @@
 #noinspection NonAsciiCharacters, CucumberTableInspection, SpellCheckingInspection
 Feature: "Everything" Endpoint
-While the API docs (https://rapidapi.com/dpventures/api/wordsapi/) do provide a schema for this endpoint response it
-appears not to be a definitive schema as I encountered a number of responses that deviated from the documented schema.
-This is unusual given this is the main endpoint for this API but may be because it (sort of) combines the other endpoints
-into a single response. As a result of the lack of a definitive schema I have conducted a number of exploratory tests to
-derive a complete schema (or as complete as I can identify at this stage). I wouldn't normally test the schema is correct
-for every response but I have done here to make sure my derived schema is correct. I have also written more test scenarios
-to illustrate certain features of the schema in more detail than I would normally go into as I am using a derived schema.
+  While the API docs (https://rapidapi.com/dpventures/api/wordsapi/) do provide a schema for this endpoint response it
+  appears not to be a definitive schema as I encountered a number of responses that deviated from the documented schema.
+  This is unusual given this is the main endpoint for this API but may be because it (sort of) combines the other endpoints
+  into a single response. As a result of the lack of a definitive schema I have conducted a number of exploratory tests to
+  derive a complete schema (or as complete as I can identify at this stage). I wouldn't normally test the schema is correct
+  for every response but I have done here to make sure my derived schema is correct. I have also written more test scenarios
+  to illustrate certain features of the schema in more detail than I would normally go into as I am using a derived schema.
 
-Also, as there are no documented requirements for this API (which is normal for 3rd party APIs) the aforementioned
-exploratory tests help to reveal and document the system behaviour under various conditions
+  Also, as there are no documented requirements for this API (which is normal for 3rd party APIs) the aforementioned
+  exploratory tests help to reveal and document the system behaviour under various conditions
 
   Scenario: Verify response schema and body
     When I make a GET request to the "Everything" endpoint for the word "example"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the response body matches the expected response
 
   Scenario Outline: Verify "word" field in response is requested word
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the word field in the response body is "<word>"
     Examples:
       | word     |
@@ -31,7 +31,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: Words can have multiple definitions (results) - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the response body contains <definitions> definitions
     Examples:
       | word    | definitions |
@@ -43,7 +43,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify definition for word with single result
     When I make a GET request to the "Everything" endpoint for the word "caribou"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the definition is
     """
     Arctic deer with large antlers in both sexes; called `reindeer' in Eurasia and `caribou' in North America
@@ -52,7 +52,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify definitions for word with multiple results
     When I make a GET request to the "Everything" endpoint for the word "shelf"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the definitions are
       | a projecting ridge on a mountain or submerged under water           |
       | a support that consists of a horizontal surface for holding objects |
@@ -60,7 +60,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: All definitions are same part of speech - <part of speech>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And all the definitions are <part of speech>
     Examples:
       | word       | part of speech |
@@ -74,7 +74,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: Definitions cover multiple parts of speech - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And <adjectives> of the definitions are adjectives
     And <adverbs> of the definitions are adverbs
     And <nouns> of the definitions are nouns
@@ -88,7 +88,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "also" field in results
     When I make a GET request to the "Everything" endpoint for the word "awake"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "also" field in the 3rd result has the following values
       | cognisant |
       | alert     |
@@ -101,7 +101,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "antonyms" field in results
     When I make a GET request to the "Everything" endpoint for the word "profit"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "antonyms" field in the 2nd result has the following values
       | break even |
       | lose       |
@@ -110,7 +110,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "attribute" field in results
     When I make a GET request to the "Everything" endpoint for the word "time"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "attribute" field in the 1st result has the following values
       | antemeridian |
       | postmeridian |
@@ -119,7 +119,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "cause" field in results
     When I make a GET request to the "Everything" endpoint for the word "work"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "cause" field in the 9th result has the following values
       | do work |
     And the "cause" field in the 18th result has the following values
@@ -134,7 +134,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "derivation" field in results
     When I make a GET request to the "Everything" endpoint for the word "puzzle"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "derivation" field in the 1st result has the following values
       | puzzlement |
       | puzzler    |
@@ -145,7 +145,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "entails" field in results
     When I make a GET request to the "Everything" endpoint for the word "touch"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "entails" field in the 2nd result has the following values
       | refer  |
       | denote |
@@ -154,7 +154,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "examples" field in results
     When I make a GET request to the "Everything" endpoint for the word "story"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "examples" field in the 1st result has the following values
       | a history of France           |
       | the story of exposure to lead |
@@ -165,7 +165,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "hasCategories" field in results
     When I make a GET request to the "Everything" endpoint for the word "science"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "hasCategories" field in the 2nd result has the following values
       | theorizer    |
       | verify       |
@@ -182,7 +182,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "hasInstances" field in results
     When I make a GET request to the "Everything" endpoint for the word "ocean"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "hasInstances" field in the 2nd result has the following values
       | pacific ocean   |
       | indian ocean    |
@@ -196,7 +196,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "hasMembers" field in results
     When I make a GET request to the "Everything" endpoint for the word "pantheon"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "hasMembers" field in the 1st result has the following values
       | god      |
       | deity    |
@@ -207,7 +207,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "hasParts" field in results
     When I make a GET request to the "Everything" endpoint for the word "dress"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "hasParts" field in the 4th result has the following values
       | neckline       |
       | slide fastener |
@@ -221,7 +221,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "hasSubstances" field in results
     When I make a GET request to the "Everything" endpoint for the word "meat"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "hasSubstances" field in the 3rd result has the following values
       | hexadecanoic acid |
       | palmitic acid     |
@@ -231,7 +231,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "hasTypes" field in results
     When I make a GET request to the "Everything" endpoint for the word "blanket"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "hasTypes" field in the 1st result has the following values
       | afghan           |
       | electric blanket |
@@ -244,7 +244,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "hasUsages" field in results
     When I make a GET request to the "Everything" endpoint for the word "superlative"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "hasUsages" field in the 4th result has the following values
       | nighest |
       | best    |
@@ -259,7 +259,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "inCategory" field in results
     When I make a GET request to the "Everything" endpoint for the word "assault"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "inCategory" field in the 6th result has the following values
       | armed services   |
       | war machine      |
@@ -271,7 +271,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "inRegion" field in results
     When I make a GET request to the "Everything" endpoint for the word "gladiator"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "inRegion" field in the 2nd result has the following values
       | roma             |
       | italian capital  |
@@ -283,7 +283,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "instanceOf" field in results
     When I make a GET request to the "Everything" endpoint for the word "devil"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "instanceOf" field in the 1st result has the following values
       | spiritual being    |
       | supernatural being |
@@ -292,7 +292,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "memberOf" field in results
     When I make a GET request to the "Everything" endpoint for the word "oyster"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "memberOf" field in the 4th result has the following values
       | ostreidae        |
       | family ostreidae |
@@ -301,7 +301,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "partOf" field in results
     When I make a GET request to the "Everything" endpoint for the word "vessel"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "partOf" field in the 2nd result has the following values
       | vascular system |
     And there is no "partOf" field in the other results
@@ -309,7 +309,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "pertainsTo" field in results
     When I make a GET request to the "Everything" endpoint for the word "choral"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "pertainsTo" field in the 2nd result has the following values
       | chorus |
     And there is no "pertainsTo" field in the other results
@@ -317,7 +317,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "regionOf" field in results
     When I make a GET request to the "Everything" endpoint for the word "atlantic"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "regionOf" field in the 1st result has the following values
       | battle of trafalgar |
       | trafalgar           |
@@ -326,7 +326,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "similarTo" field in results
     When I make a GET request to the "Everything" endpoint for the word "sandy"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "similarTo" field in the 1st result has the following values
       | blond        |
       | blonde       |
@@ -336,7 +336,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "substanceOf" field in results
     When I make a GET request to the "Everything" endpoint for the word "cocoa"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "substanceOf" field in the 2nd result has the following values
       | hot chocolate      |
       | drinking chocolate |
@@ -346,7 +346,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "synonyms" field in results
     When I make a GET request to the "Everything" endpoint for the word "cane"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "synonyms" field in the 1st result has the following values
       | flog     |
       | lambast  |
@@ -356,7 +356,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "typeOf" field in results
     When I make a GET request to the "Everything" endpoint for the word "dripping"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "typeOf" field in the 1st result has the following values
       | sound |
     And the "typeOf" field in the 3rd result has the following values
@@ -367,7 +367,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "usageOf" field in results
     When I make a GET request to the "Everything" endpoint for the word "mighty"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "usageOf" field in the 1st result has the following values
       | intensifier |
       | intensive   |
@@ -376,7 +376,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify "verbGroup" field in results
     When I make a GET request to the "Everything" endpoint for the word "shed"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the "verbGroup" field in the 3rd result has the following values
       | slop     |
       | spill    |
@@ -387,7 +387,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: Verify rhyme for word with single rhyme - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the word rhymes with "<rhyme>"
     Examples:
       | word  | rhyme |
@@ -398,7 +398,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: Verify number of syllables - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the word has <syllables> syllables
     Examples:
       | word                    | syllables |
@@ -413,7 +413,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Verify breakdown of syllables
     When I make a GET request to the "Everything" endpoint for the word "automation"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the word has the following syllables
       | au   |
       | to   |
@@ -423,13 +423,13 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Word with single pronunciation
     When I make a GET request to the "Everything" endpoint for the word "duplicate"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the word is pronounced "'du,pləkeɪt"
 
   Scenario: Word with multiple pronunciations
     When I make a GET request to the "Everything" endpoint for the word "effect"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the word has the following pronunciations
       | noun | 'ɪ,fɛkt |
       | verb | ,ɪ'fɛkt |
@@ -437,7 +437,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: Verify frequency - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     And the word has a frequency of <frequency>
     Examples:
       | word        | frequency |
@@ -454,17 +454,17 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Valid single letter word
     When I make a GET request to the "Everything" endpoint for the word "a"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Invalid single letter word
     When I make a GET request to the "Everything" endpoint for the word "q"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Number instead of word
     When I make a GET request to the "Everything" endpoint for the word "1"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario Outline: Invalid number - <description>
     When I make a GET request to the "Everything" endpoint for the word "<number>"
@@ -479,17 +479,17 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Words containing numbers
     When I make a GET request to the "Everything" endpoint for the word "1st"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Numbers as words
     When I make a GET request to the "Everything" endpoint for the word "one"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Valid multi-word phrase
     When I make a GET request to the "Everything" endpoint for the phrase "vitamin C"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Invalid multi-word phrase
     When I make a GET request to the "Everything" endpoint for the phrase "computer desk"
@@ -500,12 +500,12 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Hyphenated words
     When I make a GET request to the "Everything" endpoint for the word "mother-in-law"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Words containing apostrophes
     When I make a GET request to the "Everything" endpoint for the word "shouldn't"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Word parameter is not case sensitive
     When I make a GET request to the "Everything" endpoint for the word "canoe"
@@ -516,12 +516,12 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Commonly abbreviated word
     When I make a GET request to the "Everything" endpoint for the word "flu"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Valid initialism
     When I make a GET request to the "Everything" endpoint for the word "AA"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Invalid initialism
     When I make a GET request to the "Everything" endpoint for the word "MSN"
@@ -532,12 +532,22 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: Popular brand names - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
     Then the response has a status code of <status code>
-    And the response body follows the <schema> JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     Examples:
-      | word      | status code | schema   |
-      | Google    | 200         | expected |
-      | Microsoft | 200         | expected |
-      | Facebook  | 404         | error    |
+      | word      | status code |
+      | Google    | 200         |
+      | Microsoft | 200         |
+      | Nike      | 200         |
+
+  Scenario Outline: Unsupported popular brand names - <word>
+    When I make a GET request to the "Everything" endpoint for the word "<word>"
+    Then the response has a status code of <status code>
+    And the response body follows the error JSON schema
+    Examples:
+      | word     | status code |
+      | Facebook | 404         |
+      | Samsung  | 404         |
+      | adidas   | 404         |
 
   Scenario Outline: Word containing invalid special character - <word>
     When I make a GET request to the "Everything" endpoint for the word "<word>"
@@ -552,7 +562,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario Outline: Valid foreign phrases used in English - <phrase>
     When I make a GET request to the "Everything" endpoint for the phrase "<phrase>"
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
     Examples:
       | phrase        |
       | caveat emptor |
@@ -567,7 +577,7 @@ exploratory tests help to reveal and document the system behaviour under various
   Scenario: Abbreviated phrase with punctuation is valid
     When I make a GET request to the "Everything" endpoint for the phrase "e.g."
     Then the response has a status code of 200
-    And the response body follows the expected JSON schema
+    And the response body follows the "Everything" endpoint JSON schema
 
   Scenario: Responses for punctuated and non-punctuated abbreviated phrase differ
     When I make a GET request to the "Everything" endpoint for the word "etc"
