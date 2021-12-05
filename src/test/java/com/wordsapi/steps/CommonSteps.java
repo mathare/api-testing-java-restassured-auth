@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class CommonSteps {
 
-    private static final String BASE_RESOURCES_DIR = "src/test/resources/";
+    public static final String BASE_RESOURCES_DIR = "src/test/resources/";
     private static final String SCHEMAS_DIR = BASE_RESOURCES_DIR + "schemas/";
     private static final String EXPECTED_RESPONSES_DIR = BASE_RESOURCES_DIR + "expectedResponses/";
     private static final List<String> ENDPOINTS = Arrays.asList("Also", "Antonyms", "Definitions", "Entails", "Everything",
@@ -107,6 +107,30 @@ public class CommonSteps {
         } else {
             throw new NotImplementedException("Invalid API endpoint");
         }
+    }
+
+    @When("I search with a query parameter of {string}")
+    public static void makeRequestWithQueryParams(String queryParam) {
+        endpoint = "Search";
+        request = RestAssured.given();
+        request.header("x-rapidapi-key", System.getProperty("API_KEY"));
+        request.queryParam(queryParam.split("=")[0], queryParam.split("=")[1]);
+        response = request.get();
+        responses.add(response);
+    }
+
+    @When("I search with the following query parameters")
+    public static void makeRequestWithQueryParams(DataTable datatable) {
+        endpoint = "Search";
+        request = RestAssured.given();
+        request.header("x-rapidapi-key", System.getProperty("API_KEY"));
+        List<String> queryParams = datatable.asList();
+        StringBuilder queryStr = new StringBuilder("?" + queryParams.get(0));
+        for (int i = 1; i < queryParams.size(); i++) {
+            queryStr.append("&").append(queryParams.get(i));
+        }
+        response = request.get(queryStr.toString());
+        responses.add(response);
     }
 
     @Then("the response has a status code of {int}")

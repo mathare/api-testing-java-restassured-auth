@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "page": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "limit",
+        "page"
+      ]
+    },
+    "results": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "total"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "query",
+    "results"
+  ]
+}
