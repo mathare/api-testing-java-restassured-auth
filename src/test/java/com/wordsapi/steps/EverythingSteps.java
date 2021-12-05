@@ -74,7 +74,7 @@ public class EverythingSteps {
 
     @Then("the response bodies differ")
     public void verifyResponseBodiesDiffer() {
-        // As simple comparison of responses will differ on the "word" field since each request is for a different word
+        // A simple comparison of responses will differ on the "word" field since each request is for a different word
         // so set that field equal in both responses before comparing them
         String firstResponse = responses.get(0).asString();
         String secondResponse = responses.get(1).asString();
