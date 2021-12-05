@@ -171,6 +171,14 @@
                 }
               ]
             },
+            "participle": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "pertainsTo": {
               "type": "array",
               "items": [
