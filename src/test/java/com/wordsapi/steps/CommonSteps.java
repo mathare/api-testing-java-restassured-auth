@@ -199,7 +199,7 @@ public class CommonSteps {
     }
 
     private static String buildRequestURI(String word, String endpoint) {
-        return endpoint.equals("Everything") ? word.toLowerCase() : (word + "/" + formatEndpoint(endpoint)).toLowerCase();
+        return endpoint.equals("Everything") ? word : word + "/" + formatEndpoint(endpoint);
     }
 
     private static File getJsonSchema(String schemaName) {
